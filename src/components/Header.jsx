@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { use, useEffect } from "react";
 import Logo from "./Logo";
 import Input from "./Input";
 import { ChevronLeft, Edit, Menu, Search } from "lucide-react";
@@ -12,14 +12,19 @@ import {
   setShowMobileSideBar,
   setShowSearchBar,
 } from "@/store/contextSlice";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Header() {
   const route = useRouter();
+  const pathName = usePathname();
   const { AllPost, showSearchBar, search, searchMobile } = useSelector(
     (state) => state.context
   );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setShowSearchBar(false));
+  }, [pathName]);
   return (
     <>
       {!showSearchBar ? (

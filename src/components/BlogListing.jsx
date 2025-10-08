@@ -1,6 +1,4 @@
 "use client";
-import { posts } from "@/lib/posts";
-import Image from "next/image";
 import React, { useEffect } from "react";
 import Blog from "./Blog";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +19,7 @@ export default function BlogListing() {
 
   if (isLoading) {
     return (
-      <div className="pr-10 flex flex-col border-r border-r-neutral-300 w-3/5 justify-center items-center h-[60vh]">
+      <div className="pr-10 flex flex-col lg:border-r border-r-neutral-300 w-3/5 justify-center items-center h-[60vh]">
         <Loading />
       </div>
     );
@@ -45,7 +43,7 @@ export default function BlogListing() {
   }
 
   return (
-    <div className="pr-10 flex flex-col md:border-r w-full border-r-neutral-300">
+    <div className="pr-10 flex flex-col md:border-r w-full lg:w-3/5 border-r-neutral-300">
       {postsToShow.map((post, idx) => (
         <Blog key={idx} post={post} />
       ))}

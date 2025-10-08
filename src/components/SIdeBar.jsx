@@ -17,7 +17,7 @@ export default function SIdeBar() {
   console.log(Trending);
 
   return (
-    <div className="w-2/6  flex-col gap-10 hidden md:flex">
+    <div className="w-2/5  flex-col gap-10 hidden lg:flex">
       <div className="flex flex-wrap gap-2">
         {[
           "Local",

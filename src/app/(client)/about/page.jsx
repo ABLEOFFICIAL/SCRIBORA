@@ -1,4 +1,5 @@
 import Nav from "@/components/Nav";
+import Link from "next/link";
 import React from "react";
 
 export default function AboutPage() {
@@ -67,12 +68,12 @@ export default function AboutPage() {
               Explore our latest articles, follow us on social platforms, or get
               in touch with our editorial team.
             </p>
-            <a
+            <Link
               href="/contact-us"
               className="inline-block bg-amber-500 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-amber-600 transition"
             >
               Contact Us
-            </a>
+            </Link>
           </div>
         </section>
       </div>

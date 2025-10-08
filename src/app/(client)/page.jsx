@@ -9,17 +9,12 @@ const page = () => {
   return (
     <div className=" min-h-screen overflow-hidden pb-10 bg-neutral-50">
       <Nav />
-
-      <div className="w-full md:w-7xl mx-auto ">
-        <>
-          {" "}
-          <div className="flex z-0 justify-between gap-4 md:p-10 p-3 bg-white rounded-md shadow-md">
-            <BlogListing />
-            <SIdeBar />
-          </div>
-        </>
-        {/* )} */}
+      {/* <div className=" "> */}{" "}
+      <div className="flex w-full max-w-7xl mx-auto z-0 justify-between gap-4 md:p-10 p-3 bg-white rounded-md shadow-md">
+        <BlogListing />
+        <SIdeBar />
       </div>
+      {/* </div> */}
     </div>
   );
 };

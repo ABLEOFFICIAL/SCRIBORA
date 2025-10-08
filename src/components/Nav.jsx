@@ -36,12 +36,13 @@ export default function Nav() {
     { name: "Business" },
     { name: "Courses", lists: ["Programming", "Design", "Marketing"] },
     { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact-us" },
     { name: "Terms And Conditions", href: "/t&c" },
     { name: "FAQs", href: "/faq" },
   ];
 
   return (
-    <div className="mb-3 sm:mb-4 md:mb-10 border-b border-b-neutral-300 bg-white sticky top-0 px-2 sm:px-3 md:px-0">
+    <div className="mb-3 sm:mb-4 md:mb-10 border-b border-b-neutral-300 bg-white sticky top-0  px-4 sm:px-6 md:px-10 ">
       <div className="relative">
         {/* ensures dropdowns can stack above */}
         <nav

@@ -1,4 +1,5 @@
 import Nav from "@/components/Nav";
+import Link from "next/link";
 import React from "react";
 
 export default function TermsPage() {
@@ -92,12 +93,12 @@ export default function TermsPage() {
               Reach out to our editorial and support team for clarification or
               further details.
             </p>
-            <a
-              href="/contact"
+            <Link
+              href="/contact-us"
               className="inline-block bg-amber-500 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-amber-600 transition"
             >
               Contact Us
-            </a>
+            </Link>
           </div>
         </section>
       </div>

@@ -23,6 +23,7 @@ export async function fetchPosts() {
 
 // fetch a single post by ID
 export async function fetchPostById(id) {
+  console.log("🧩 ID sent to backend:", id);
   const url = `/api/posts/${id}`;
   try {
     const res = await fetch(url, { cache: "no-store" });
