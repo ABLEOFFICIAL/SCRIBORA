@@ -1,6 +1,6 @@
 // fetch all posts
 export async function fetchPosts() {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`;
+  const url = `/api/posts`;
   try {
     const res = await fetch(url, { cache: "no-store" });
 
@@ -23,7 +23,7 @@ export async function fetchPosts() {
 
 // fetch a single post by ID
 export async function fetchPostById(id) {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${id}`;
+  const url = `/api/posts/${id}`;
   try {
     const res = await fetch(url, { cache: "no-store" });
 
@@ -42,7 +42,7 @@ export async function fetchPostById(id) {
 
 // make a new post
 export async function createPost(newPostData) {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`;
+  const url = `/api/posts`;
   try {
     const res = await fetch(url, {
       method: "POST",
@@ -69,7 +69,7 @@ export async function createPost(newPostData) {
 
 // fetch comments
 export async function fetchComments(postId) {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/comments?postId=${postId}`;
+  const url = `/api/comments?postId=${postId}`;
   try {
     const res = await fetch(url);
 
@@ -92,7 +92,7 @@ export async function fetchComments(postId) {
 
 // post a comment
 export async function postComment(commentData) {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/comments`;
+  const url = `/api/comments`;
   try {
     const res = await fetch(url, {
       method: "POST",
@@ -119,7 +119,7 @@ export async function postComment(commentData) {
 
 // delete a post by ID
 export async function deletePost(id) {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${id}`;
+  const url = `/api/posts/${id}`;
   try {
     const res = await fetch(url, { method: "DELETE" });
 

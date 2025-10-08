@@ -14,6 +14,8 @@ export default function SIdeBar() {
   const dispatch = useDispatch();
   const allPost = useSelector((state) => state.context.AllPost);
   const Trending = allPost.filter((post) => post.trending);
+  console.log(Trending);
+
   return (
     <div className="w-2/6  flex-col gap-10 hidden md:flex">
       <div className="flex flex-wrap gap-2">
@@ -53,8 +55,8 @@ export default function SIdeBar() {
       <div>
         <h2 className="text-3xl font-serif font-normal mb-5">Trending</h2>
         <div className="flex flex-col gap-3">
-          {Trending.map((post, idx) => (
-            <Card key={idx}>
+          {Trending.slice(0, 4).map((post, idx) => (
+            <Card href={`/${post._id}`} key={idx}>
               <div>
                 <div className="flex gap-2 mb-3">
                   {post.category.map((cat, idx) => (
