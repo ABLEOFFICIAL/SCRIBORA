@@ -1,0 +1,352 @@
+[
+    {
+        id: 1,
+        title: "The Rise of Local News in Digital Media",
+        slug: "rise-of-local-news-in-digital-media",
+        author: "Scribora",
+        date: "May 28, 2025",
+        category: ["Local", "Business"],
+        trending: true,
+        country: "Nigeria"
+        tags: ["Local News", "Digital Media", "Community"],
+        excerpt: "Local journalism is adapting to the digital world, finding new ways to stay relevant and engage readers.",  
+        image: "/roman-kraft-_Zua2hyvTBk-unsplash.jpg",
+        readingTime: "6 min read",
+        content: 
+      [{
+        subtitle: "Introduction",
+        text: "Local journalism has always played a vital role in keeping communities informed. With the rise of digital platforms, traditional local news outlets have had to rethink how they deliver content and stay connected to their readers.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste?",
+        image: "/roman-kraft-_Zua2hyvTBk-unsplash.jpg",      },
+      {
+        subtitle: "Challenges of Local News",
+        text: "The biggest challenges include shrinking print revenue, competition with online media, and maintaining credibility in an age of misinformation. Despite these, local news remains essential for civic engagement.",
+      },
+      {
+        subtitle: "Digital Transformation",
+        text: "Many local outlets have moved online, leveraging social media and websites to distribute news faster and wider. Podcasts and newsletters are now being adopted as direct engagement tools.",
+        image: "/roman-kraft-_Zua2hyvTBk-unsplash.jpg",      },
+      {
+        subtitle: "Community Engagement",
+        text: "Readers now expect to interact with stories—through comments, shares, or even submitting their own tips.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste? Local media is evolving to foster stronger community connections.",
+      },
+      {
+        subtitle: "Future Outlook",
+        text: "Local journalism will survive by embracing technology while staying true to its roots: telling the stories that matter most to people in their neighborhoods.",
+        image: "/roman-kraft-_Zua2hyvTBk-unsplash.jpg"",      }]
+    },
+    {
+        id: 2,
+        title: "How Local Journalists Shape Community Stories",
+        slug: "local-journalists-shape-community-stories",
+        author: "Scribora",
+        date: "May 28, 2025",
+        category: [ "International", "Politics"],
+        trending: true,
+        country: "Nigeria"
+        tags: ["Local News", "Digital Media", "Community"],
+        excerpt: "Local journalism is adapting to the digital world, finding new ways to stay relevant and engage readers.",  
+        image: "/samsung-memory-us-amkV7zP9Bqo-unsplash.jpg",
+        readingTime: "6 min read",
+        content: 
+      [{
+        subtitle: "Introduction",
+        text: "Local journalism has always played a vital role in keeping communities informed. With the rise of digital platforms, traditional local news outlets have had to rethink how they deliver content and stay connected to their readers.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste?",
+        image: "/samsung-memory-us-amkV7zP9Bqo-unsplash.jpg",      },
+      {
+        subtitle: "Challenges of Local News",
+        text: "The biggest challenges include shrinking print revenue, competition with online media, and maintaining credibility in an age of misinformation. Despite these, local news remains essential for civic engagement.",
+      },
+      {
+        subtitle: "Digital Transformation",
+        text: "Many local outlets have moved online, leveraging social media and websites to distribute news faster and wider. Podcasts and newsletters are now being adopted as direct engagement tools.",
+        image: "/samsung-memory-us-amkV7zP9Bqo-unsplash.jpg",      },
+      {
+        subtitle: "Community Engagement",
+        text: "Readers now expect to interact with stories—through comments, shares, or even submitting their own tips.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste? Local media is evolving to foster stronger community connections.",
+      },
+      {
+        subtitle: "Future Outlook",
+        text: "Local journalism will survive by embracing technology while staying true to its roots: telling the stories that matter most to people in their neighborhoods.",
+        image: "/samsung-memory-us-amkV7zP9Bqo-unsplash.jpg",      }]
+    },
+    {
+        id: 3,
+        title: "The Shifting Landscape of International Relations",
+        slug: "shifting-landscape-of-international-relations",
+        author: "Scribora",
+        date: "May 28, 2025",
+        category: [ "Business", "Politics"],
+        trending: true,
+        country: "Nigeria"
+        tags: ["Local News", "Digital Media", "Community"],
+        excerpt: "Local journalism is adapting to the digital world, finding new ways to stay relevant and engage readers.",  
+        image: "/samsung-memory-us-KgyZ-A8gaRw-unsplash.jpg",
+        readingTime: "6 min read",
+        content: 
+      [{
+        subtitle: "Introduction",
+        text: "Local journalism has always played a vital role in keeping communities informed. With the rise of digital platforms, traditional local news outlets have had to rethink how they deliver content and stay connected to their readers.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste?",
+        image: "/samsung-memory-us-KgyZ-A8gaRw-unsplash.jpg",      },
+      {
+        subtitle: "Challenges of Local News",
+        text: "The biggest challenges include shrinking print revenue, competition with online media, and maintaining credibility in an age of misinformation. Despite these, local news remains essential for civic engagement.",
+      },
+      {
+        subtitle: "Digital Transformation",
+        text: "Many local outlets have moved online, leveraging social media and websites to distribute news faster and wider. Podcasts and newsletters are now being adopted as direct engagement tools.",
+        image: "/samsung-memory-us-KgyZ-A8gaRw-unsplash.jpg",      },
+      {
+        subtitle: "Community Engagement",
+        text: "Readers now expect to interact with stories—through comments, shares, or even submitting their own tips.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste? Local media is evolving to foster stronger community connections.",
+      },
+      {
+        subtitle: "Future Outlook",
+        text: "Local journalism will survive by embracing technology while staying true to its roots: telling the stories that matter most to people in their neighborhoods.",
+        image: "/samsung-memory-us-KgyZ-A8gaRw-unsplash.jpg",      }]
+    },
+    {
+        id: 4,
+        title: "Global Media Coverage in Times of Crisis",
+        slug: "global-media-coverage-in-times-of-crisis",
+        author: "Scribora",
+        date: "May 28, 2025",
+        category: [ "Beauty & Health"],
+        trending: true,
+        country: "Nigeria"
+        tags: ["Local News", "Digital Media", "Community"],
+        excerpt: "Local journalism is adapting to the digital world, finding new ways to stay relevant and engage readers.",  
+        image: "/Group 8 (5).png",
+        readingTime: "6 min read",
+        content: 
+      [{
+        subtitle: "Introduction",
+        text: "Local journalism has always played a vital role in keeping communities informed. With the rise of digital platforms, traditional local news outlets have had to rethink how they deliver content and stay connected to their readers.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste?",
+        image: "/Group 8 (5).png",      },
+      {
+        subtitle: "Challenges of Local News",
+        text: "The biggest challenges include shrinking print revenue, competition with online media, and maintaining credibility in an age of misinformation. Despite these, local news remains essential for civic engagement.",
+      },
+      {
+        subtitle: "Digital Transformation",
+        text: "Many local outlets have moved online, leveraging social media and websites to distribute news faster and wider. Podcasts and newsletters are now being adopted as direct engagement tools.",
+        image: "/Group 8 (5).png",      },
+      {
+        subtitle: "Community Engagement",
+        text: "Readers now expect to interact with stories—through comments, shares, or even submitting their own tips.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste? Local media is evolving to foster stronger community connections.",
+      },
+      {
+        subtitle: "Future Outlook",
+        text: "Local journalism will survive by embracing technology while staying true to its roots: telling the stories that matter most to people in their neighborhoods.",
+        image: "/Group 8 (5).png",      }]
+    },
+    {
+        id: 5,
+        title: "Why Politics Still Shapes Everyday Life",
+        slug: "why-politics-still-shapes-everyday-life",
+        author: "Scribora",
+        date: "May 28, 2025",
+        category: [ "Music", "Fashion"],
+        trending: true,
+        country: "Nigeria"
+        tags: ["Local News", "Digital Media", "Community"],
+        excerpt: "Local journalism is adapting to the digital world, finding new ways to stay relevant and engage readers.",  
+        image: "/nadzeya-matskevich-z90CJOaDoI4-unsplash.jpg",
+        readingTime: "6 min read",
+        content: 
+      [{
+        subtitle: "Introduction",
+        text: "Local journalism has always played a vital role in keeping communities informed. With the rise of digital platforms, traditional local news outlets have had to rethink how they deliver content and stay connected to their readers.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste?",
+        image: "/nadzeya-matskevich-z90CJOaDoI4-unsplash.jpg",      },
+      {
+        subtitle: "Challenges of Local News",
+        text: "The biggest challenges include shrinking print revenue, competition with online media, and maintaining credibility in an age of misinformation. Despite these, local news remains essential for civic engagement.",
+      },
+      {
+        subtitle: "Digital Transformation",
+        text: "Many local outlets have moved online, leveraging social media and websites to distribute news faster and wider. Podcasts and newsletters are now being adopted as direct engagement tools.",
+        image: "/nadzeya-matskevich-z90CJOaDoI4-unsplash.jpg",      },
+      {
+        subtitle: "Community Engagement",
+        text: "Readers now expect to interact with stories—through comments, shares, or even submitting their own tips.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste? Local media is evolving to foster stronger community connections.",
+      },
+      {
+        subtitle: "Future Outlook",
+        text: "Local journalism will survive by embracing technology while staying true to its roots: telling the stories that matter most to people in their neighborhoods.",
+        image: "/nadzeya-matskevich-z90CJOaDoI4-unsplash.jpg",      }]
+    },
+    {
+        id: 6,
+        title: "The Changing Face of Global Politics",
+        slug: "changing-face-of-global-politics",
+        author: "Scribora",
+        date: "May 28, 2025",
+        category: ["Food & Travel"],
+        trending: true,
+        country: "Nigeria"
+        tags: ["Local News", "Digital Media", "Community"],
+        excerpt: "Local journalism is adapting to the digital world, finding new ways to stay relevant and engage readers.",  
+        image: "/roman-kraft-_Zua2hyvTBk-unsplash.jpg",
+        readingTime: "6 min read",
+        content: 
+      [{
+        subtitle: "Introduction",
+        text: "Local journalism has always played a vital role in keeping communities informed. With the rise of digital platforms, traditional local news outlets have had to rethink how they deliver content and stay connected to their readers.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste?",
+        image: "/roman-kraft-_Zua2hyvTBk-unsplash.jpg",      },
+      {
+        subtitle: "Challenges of Local News",
+        text: "The biggest challenges include shrinking print revenue, competition with online media, and maintaining credibility in an age of misinformation. Despite these, local news remains essential for civic engagement.",
+      },
+      {
+        subtitle: "Digital Transformation",
+        text: "Many local outlets have moved online, leveraging social media and websites to distribute news faster and wider. Podcasts and newsletters are now being adopted as direct engagement tools.",
+        image: "/roman-kraft-_Zua2hyvTBk-unsplash.jpg",      },
+      {
+        subtitle: "Community Engagement",
+        text: "Readers now expect to interact with stories—through comments, shares, or even submitting their own tips.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste? Local media is evolving to foster stronger community connections.",
+      },
+      {
+        subtitle: "Future Outlook",
+        text: "Local journalism will survive by embracing technology while staying true to its roots: telling the stories that matter most to people in their neighborhoods.",
+        image: "/roman-kraft-_Zua2hyvTBk-unsplash.jpg"",      }]
+    },
+    {
+        id: 7,
+        title: "The Art of Slowing Down in a Fast-Paced World",
+        slug: "art-of-slowing-down",
+        author: "Scribora",
+        date: "May 28, 2025",
+        category: [ "Design", "Local],
+        trending: true,
+        country: "Nigeria"
+        tags: ["Local News", "Digital Media", "Community"],
+        excerpt: "Local journalism is adapting to the digital world, finding new ways to stay relevant and engage readers.",  
+        image: "/samsung-memory-us-amkV7zP9Bqo-unsplash.jpg",
+        readingTime: "6 min read",
+        content: 
+      [{
+        subtitle: "Introduction",
+        text: "Local journalism has always played a vital role in keeping communities informed. With the rise of digital platforms, traditional local news outlets have had to rethink how they deliver content and stay connected to their readers.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste?",
+        image: "/samsung-memory-us-amkV7zP9Bqo-unsplash.jpg",      },
+      {
+        subtitle: "Challenges of Local News",
+        text: "The biggest challenges include shrinking print revenue, competition with online media, and maintaining credibility in an age of misinformation. Despite these, local news remains essential for civic engagement.",
+      },
+      {
+        subtitle: "Digital Transformation",
+        text: "Many local outlets have moved online, leveraging social media and websites to distribute news faster and wider. Podcasts and newsletters are now being adopted as direct engagement tools.",
+        image: "/samsung-memory-us-amkV7zP9Bqo-unsplash.jpg",      },
+      {
+        subtitle: "Community Engagement",
+        text: "Readers now expect to interact with stories—through comments, shares, or even submitting their own tips.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste? Local media is evolving to foster stronger community connections.",
+      },
+      {
+        subtitle: "Future Outlook",
+        text: "Local journalism will survive by embracing technology while staying true to its roots: telling the stories that matter most to people in their neighborhoods.",
+        image: "/samsung-memory-us-amkV7zP9Bqo-unsplash.jpg",      }]
+    },
+    {
+        id: 8,
+        title: "Healthy Living: Small Habits That Make a Big Difference",
+        slug: "healthy-living-small-habits",
+        author: "Scribora",
+        date: "May 28, 2025",
+        category: [ "Programming"],
+        trending: true,
+        country: "Nigeria"
+        tags: ["Local News", "Digital Media", "Community"],
+        excerpt: "Local journalism is adapting to the digital world, finding new ways to stay relevant and engage readers.",  
+        image: "/samsung-memory-us-KgyZ-A8gaRw-unsplash.jpg",
+        readingTime: "6 min read",
+        content: 
+      [{
+        subtitle: "Introduction",
+        text: "Local journalism has always played a vital role in keeping communities informed. With the rise of digital platforms, traditional local news outlets have had to rethink how they deliver content and stay connected to their readers.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste?",
+        image: "/samsung-memory-us-KgyZ-A8gaRw-unsplash.jpg",      },
+      {
+        subtitle: "Challenges of Local News",
+        text: "The biggest challenges include shrinking print revenue, competition with online media, and maintaining credibility in an age of misinformation. Despite these, local news remains essential for civic engagement.",
+      },
+      {
+        subtitle: "Digital Transformation",
+        text: "Many local outlets have moved online, leveraging social media and websites to distribute news faster and wider. Podcasts and newsletters are now being adopted as direct engagement tools.",
+        image: "/samsung-memory-us-KgyZ-A8gaRw-unsplash.jpg",      },
+      {
+        subtitle: "Community Engagement",
+        text: "Readers now expect to interact with stories—through comments, shares, or even submitting their own tips.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste? Local media is evolving to foster stronger community connections.",
+      },
+      {
+        subtitle: "Future Outlook",
+        text: "Local journalism will survive by embracing technology while staying true to its roots: telling the stories that matter most to people in their neighborhoods.",
+        image: "/samsung-memory-us-KgyZ-A8gaRw-unsplash.jpg",      }]
+    },
+    {
+        id: 9,
+        title: "The Evolution of Superhero Movies",
+        slug: "evolution-of-superhero-movies",
+        author: "Scribora",
+        date: "May 28, 2025",
+        category: [ "Movies"],
+        trending: true,
+        country: "Nigeria"
+        tags: ["Local News", "Digital Media", "Community"],
+        excerpt: "Local journalism is adapting to the digital world, finding new ways to stay relevant and engage readers.",  
+        image: "/Group 8 (5).png",
+        readingTime: "6 min read",
+        content: 
+      [{
+        subtitle: "Introduction",
+        text: "Local journalism has always played a vital role in keeping communities informed. With the rise of digital platforms, traditional local news outlets have had to rethink how they deliver content and stay connected to their readers.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste?",
+        image: "/Group 8 (5).png",      },
+      {
+        subtitle: "Challenges of Local News",
+        text: "The biggest challenges include shrinking print revenue, competition with online media, and maintaining credibility in an age of misinformation. Despite these, local news remains essential for civic engagement.",
+      },
+      {
+        subtitle: "Digital Transformation",
+        text: "Many local outlets have moved online, leveraging social media and websites to distribute news faster and wider. Podcasts and newsletters are now being adopted as direct engagement tools.",
+        image: "/Group 8 (5).png",      },
+      {
+        subtitle: "Community Engagement",
+        text: "Readers now expect to interact with stories—through comments, shares, or even submitting their own tips.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste? Local media is evolving to foster stronger community connections.",
+      },
+      {
+        subtitle: "Future Outlook",
+        text: "Local journalism will survive by embracing technology while staying true to its roots: telling the stories that matter most to people in their neighborhoods.",
+        image: "/Group 8 (5).png",      }]
+    },
+    {
+        id: 10,
+        title: "The Art of Storytelling in Modern Cinema",
+        slug: "art-of-storytelling-modern-cinema",
+        author: "Scribora",
+        date: "May 28, 2025",
+        category: [ "Marketing"],
+        trending: true,
+        country: "Nigeria"
+        tags: ["Local News", "Digital Media", "Community"],
+        excerpt: "Local journalism is adapting to the digital world, finding new ways to stay relevant and engage readers.",  
+        image: "/nadzeya-matskevich-z90CJOaDoI4-unsplash.jpg",
+        readingTime: "6 min read",
+        content: 
+      [{
+        subtitle: "Introduction",
+        text: "Local journalism has always played a vital role in keeping communities informed. With the rise of digital platforms, traditional local news outlets have had to rethink how they deliver content and stay connected to their readers.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste?",
+        image: "/nadzeya-matskevich-z90CJOaDoI4-unsplash.jpg",      },
+      {
+        subtitle: "Challenges of Local News",
+        text: "The biggest challenges include shrinking print revenue, competition with online media, and maintaining credibility in an age of misinformation. Despite these, local news remains essential for civic engagement.",
+      },
+      {
+        subtitle: "Digital Transformation",
+        text: "Many local outlets have moved online, leveraging social media and websites to distribute news faster and wider. Podcasts and newsletters are now being adopted as direct engagement tools.",
+        image: "/nadzeya-matskevich-z90CJOaDoI4-unsplash.jpg",      },
+      {
+        subtitle: "Community Engagement",
+        text: "Readers now expect to interact with stories—through comments, shares, or even submitting their own tips.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore provident deserunt voluptas mollitia hic ex quis sit. Esse sunt cumque repellat saepe amet? Quam aliquid eius cumque laudantium maiores iste? Local media is evolving to foster stronger community connections.",
+      },
+      {
+        subtitle: "Future Outlook",
+        text: "Local journalism will survive by embracing technology while staying true to its roots: telling the stories that matter most to people in their neighborhoods.",
+        image: "/nadzeya-matskevich-z90CJOaDoI4-unsplash.jpg",      }]
+    },
+]
