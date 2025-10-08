@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../../app/globals.css";
 import ReduxProvider from "@/provider/ReduxProvider";
 import Header from "@/components/Header";
+import SideBarMobile from "@/components/SideBarMobile";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       >
         <ReduxProvider>
           <Header />
+          <SideBarMobile />
           {children}
         </ReduxProvider>
       </body>

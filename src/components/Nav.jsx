@@ -35,17 +35,19 @@ export default function Nav() {
     { name: "Entertainment", lists: ["Movies", "Music", "Celebrities"] },
     { name: "Business" },
     { name: "Courses", lists: ["Programming", "Design", "Marketing"] },
-    { name: "Awards" },
     { name: "About", href: "/about" },
     { name: "Terms And Conditions", href: "/t&c" },
     { name: "FAQs", href: "/faq" },
   ];
 
   return (
-    <div className="mb-3 sm:mb-4 md:mb-10 border-b border-b-neutral-300 bg-white sticky top-0 z-[999] px-2 sm:px-3 md:px-0">
+    <div className="mb-3 sm:mb-4 md:mb-10 border-b border-b-neutral-300 bg-white sticky top-0 px-2 sm:px-3 md:px-0">
       <div className="relative">
         {/* ensures dropdowns can stack above */}
-        <nav className="max-w-7xl mx-auto py-3 md:py-4 text-gray-600">
+        <nav
+          style={{ scrollbarWidth: "none" }}
+          className="max-w-7xl overflow-auto mx-auto py-3 md:py-4 text-gray-600"
+        >
           <div
             style={{ scrollbarWidth: "none" }}
             className="flex items-center justify-start md:justify-between w-max md:w-full overflow-x-auto md:overflow-x-visible no-scrollbar"

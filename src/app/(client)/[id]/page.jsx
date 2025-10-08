@@ -13,7 +13,7 @@ import emailjs from "@emailjs/browser";
 const BlogsDetails = ({ params }) => {
   const { id } = use(params);
   const clickedPost = useSelector((state) => state.context.singlePost);
-  const { AllPost, isLoading, comments, commentsLoading } = useSelector(
+  const { AllPost, detailsLoading, comments, commentsLoading } = useSelector(
     (state) => state.context
   );
   const dispatch = useDispatch();
@@ -132,7 +132,7 @@ const BlogsDetails = ({ params }) => {
     setData({ name: "", email: "", comment: "" });
   };
 
-  if (isLoading) {
+  if (detailsLoading) {
     return (
       <div className="pr-10 flex flex-col border-r border-r-neutral-300 w-3/5 justify-center items-center h-[60vh]">
         <Loading />

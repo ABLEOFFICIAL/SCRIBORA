@@ -29,13 +29,13 @@ export default function Header() {
             <div className="flex items-center gap-2">
               <Menu
                 onClick={() => dispatch(setShowMobileSideBar(true))}
-                className="w-8 h-8 text-white md:hidden"
+                className="w-6 h-6 text-white md:hidden"
               />
               <Logo />
             </div>
 
             {/* Middle: Search (hidden on mobile) */}
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-4 z-[1000]">
               <Editions />
               <div className="relative w-60 lg:w-72">
                 <Input
