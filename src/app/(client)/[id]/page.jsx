@@ -457,7 +457,7 @@ const BlogsDetails = ({ params }) => {
                 ))}
 
                 {/* comment box */}
-                <div className="my-10 sm:my-20 flex flex-col gap-3">
+                {/* <div className="my-10 sm:my-20 flex flex-col gap-3">
                   <h3 className="text-2xl sm:text-4xl font-medium font-serif">
                     Leave a comment
                   </h3>
@@ -467,7 +467,7 @@ const BlogsDetails = ({ params }) => {
                       Post Comment
                     </button>
                   </div>
-                </div>
+                </div> */}
               </div>
               <span className="relative h-10 w-full flex justify-center items-center my-6 sm:my-10 px-2 sm:px-0">
                 <span className="w-full border-t border-t-neutral-300 block"></span>
