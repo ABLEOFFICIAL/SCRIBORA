@@ -34,7 +34,7 @@ export default function Header() {
             <div className="flex items-center gap-2">
               <Menu
                 onClick={() => dispatch(setShowMobileSideBar(true))}
-                className="w-6 h-6 text-white md:hidden"
+                className="w-5 h-5 text-white md:hidden"
               />
               <Logo />
             </div>
@@ -68,7 +68,7 @@ export default function Header() {
             {/* Right: Mobile search icon */}
             <Search
               onClick={() => dispatch(setShowSearchBar(true))}
-              className="text-white w-7 h-7 md:hidden block"
+              className="text-white w-5 h-5 md:hidden block"
             />
           </div>
         </div>

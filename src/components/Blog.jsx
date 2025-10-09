@@ -42,7 +42,7 @@ export default function Blog({ post }) {
           ))}
         </span>
         <Link href={`/${post._id}`}>
-          <h2 className="text-xl lg:text-3xl font-medium font-serif w-full">
+          <h2 className="text-lg lg:text-3xl font-medium font-serif w-full">
             {post.title}
           </h2>
         </Link>
@@ -66,7 +66,7 @@ export default function Blog({ post }) {
         </p>
         <Link
           href={`/${post._id}`}
-          className="text-blue-600 bg-blue-200 w-max px-2 py-1 rounded font-semibold text-sm flex items-center gap-1 "
+          className="text-blue-600 text-xs bg-blue-200 w-max px-1 lg:px-2 py-0.5 lg:py-1 rounded font-semibold lg:text-sm flex items-center gap-1 "
         >
           Continue Reading <LinkIcon className="size-3" />
         </Link>

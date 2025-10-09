@@ -51,13 +51,13 @@ export default function Nav() {
         >
           <div
             style={{ scrollbarWidth: "none" }}
-            className="flex items-center justify-start md:justify-between w-max md:w-full overflow-x-auto md:overflow-x-visible no-scrollbar"
+            className="flex items-center font-semibold lg:font-normal text-sm lg:text-base justify-start md:justify-between w-max md:w-full overflow-x-auto md:overflow-x-visible no-scrollbar"
           >
             {categories.map((cat, idx) =>
               cat.lists ? (
                 <div
                   key={idx}
-                  className="flex items-center justify-center gap-2"
+                  className="flex items-center relative justify-center gap-2"
                 >
                   <HoverDropDown
                     label={cat.name}

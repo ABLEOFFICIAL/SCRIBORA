@@ -43,7 +43,7 @@ function HoverDropDown({ label, items, className, onClick }) {
 
       {/* Dropdown */}
       {isOpen && (
-        <ul className="fixed left-auto rounded shadow-md w-40 bg-white border border-gray-200 z-[1000]">
+        <ul className="fixed left-auto font-normal rounded shadow-md w-40 bg-white border border-gray-200 z-[1000]">
           {items.map((item, idx) => (
             <li
               key={idx}
