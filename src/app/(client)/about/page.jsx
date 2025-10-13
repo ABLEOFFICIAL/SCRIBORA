@@ -13,7 +13,10 @@ export default function AboutPage() {
             About Scribora
           </h1>
           <p className="text-base text-gray-700 leading-relaxed mb-4">
-            Scribora is your trusted digital news platform, delivering accurate,
+            <Link href={"/admin"} className="cursor-pointer">
+              Scribora
+            </Link>{" "}
+            is your trusted digital news platform, delivering accurate,
             engaging, and up-to-date stories from around the world. Our mission
             is to keep readers informed with reliable journalism that cuts
             through the noise.
