@@ -34,7 +34,7 @@ export default function ContactPage() {
               Send us a message and we’ll respond within 48 hours.
             </p>
             <a
-              href="mailto:editor@scribora.com"
+              href="mailto:scriborablog@gmail.com"
               className="inline-block bg-amber-500 text-white font-medium px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
             >
               Send a Message
@@ -46,11 +46,11 @@ export default function ContactPage() {
             <Phone className="w-8 h-8 text-blue-400 mb-4" />
             <h3 className="text-xl font-semibold mb-2">Call Us</h3>
             <p className="text-gray-600 mb-4">
-              +234 (0) 812 345 6789 <br />
+              +234 (0) 912 413 1299 <br />
               Mon – Fri, 9:00am – 6:00pm
             </p>
             <a
-              href="tel:+2348123456789"
+              href="tel:+2349124131299"
               className="inline-block bg-amber-500 text-white font-medium px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
             >
               Call Now
@@ -88,7 +88,7 @@ export default function ContactPage() {
                 For press and media-related requests.
               </p>
               <a
-                href="mailto:press@scribora.com"
+                href="mailto:scriborablog@gmail.com"
                 className="text-blue-400 font-medium"
               >
                 Make enquiry →
@@ -102,7 +102,7 @@ export default function ContactPage() {
                 Found misinformation or content that concerns you?
               </p>
               <a
-                href="mailto:report@scribora.com"
+                href="mailto:scriborablog@gmail.com"
                 className="text-blue-400 font-medium"
               >
                 Raise concern →
@@ -116,7 +116,7 @@ export default function ContactPage() {
                 Need assistance with navigating Scribora?
               </p>
               <a
-                href="mailto:info@scribora.com"
+                href="mailto:scriborablog@gmail.com"
                 className="text-blue-400 font-medium"
               >
                 Get help →
@@ -136,7 +136,7 @@ export default function ContactPage() {
               news platform better for you.
             </p>
             <a
-              href="mailto:feedback@scribora.com"
+              href="mailto:scriborablog@gmail.com"
               className="inline-block bg-amber-500 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-amber-600 transition"
             >
               Send Feedback

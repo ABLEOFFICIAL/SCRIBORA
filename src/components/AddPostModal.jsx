@@ -369,13 +369,13 @@ export default function AddPostModal() {
               >
                 Add Image Block
               </button>
-              <button
+              {/* <button
                 type="button"
                 onClick={() => addContentBlock("table")}
                 className="px-3 py-1 bg-neutral-500 text-white rounded font-semibold text-xs sm:text-sm"
               >
                 Add Table Block
-              </button>
+              </button> */}
             </div>
 
             {/* Save Button */}

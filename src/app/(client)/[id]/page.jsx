@@ -10,13 +10,13 @@ import React, { use, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import emailjs from "@emailjs/browser";
 import SuccessSubmit from "@/components/successSubmit";
+import { setEmailSuccess } from "@/store/contextSlice";
 
 const BlogsDetails = ({ params }) => {
   const { id } = use(params);
   const clickedPost = useSelector((state) => state.context.singlePost);
-  const { AllPost, detailsLoading, comments, commentsLoading } = useSelector(
-    (state) => state.context
-  );
+  const { AllPost, detailsLoading, comments, commentsLoading, emailSuccess } =
+    useSelector((state) => state.context);
   const dispatch = useDispatch();
   const commentsRef = useRef(null);
   const pathname = usePathname();
@@ -31,7 +31,6 @@ const BlogsDetails = ({ params }) => {
   const [formStatus, setFormStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSharing, setIsSharing] = useState(false);
-  const [emailSuccess, setEmailSuccess] = useState(false);
   const [commentSuccess, setCommentSuccess] = useState(false);
 
   useEffect(() => {
@@ -116,7 +115,7 @@ const BlogsDetails = ({ params }) => {
     const publicKey = "0-UL1jRHodRtq_rl7";
 
     const templateParams = {
-      user_email: email,
+      email: email,
     };
 
     emailjs.send(serviceID, templateID, templateParams, publicKey).then(
@@ -129,9 +128,9 @@ const BlogsDetails = ({ params }) => {
         console.error("EmailJS error:", error);
       }
     );
-    setEmailSuccess(true);
+    dispatch(setEmailSuccess(true));
     setTimeout(() => {
-      setEmailSuccess(false);
+      dispatch(setEmailSuccess(false));
     }, 3000);
   };
 

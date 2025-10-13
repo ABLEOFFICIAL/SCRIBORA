@@ -13,7 +13,7 @@ export default function SideBar() {
   const Trending = allPost
     .filter((post) => post.trending)
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // latest first
-    .slice(0, 4); // show only the 4 newest trending posts
+    .slice(0, 4);
 
   return (
     <div className="w-2/5 flex-col gap-10 hidden lg:flex">

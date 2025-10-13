@@ -12,7 +12,7 @@ const contextSlice = createSlice({
     filteredPosts: [],
     singlePost: null,
     search: "",
-    email: "",
+    emailSuccess: false,
     //  admin states
     showAdminSidebar: true,
     showAddModal: false,
@@ -95,6 +95,9 @@ const contextSlice = createSlice({
     setSelectedCountry(state, action) {
       state.selectedCountry = action.payload;
     },
+    setEmailSuccess(state, action) {
+      state.emailSuccess = action.payload;
+    },
     filterByCountry(state, action) {
       const country = action.payload;
       state.selectedCountry = country;
@@ -149,5 +152,6 @@ export const {
   setVisitorCount,
   filterByCountry,
   setSelectedCountry,
+  setEmailSuccess,
 } = contextSlice.actions;
 export default contextSlice.reducer;

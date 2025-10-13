@@ -1,8 +1,19 @@
 // src/app/api/upload/route.js
 import { NextResponse } from "next/server";
-import path from "path";
-import { writeFile, mkdir } from "fs/promises";
-import { existsSync } from "fs";
+import { v2 as cloudinary } from "cloudinary";
+
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+export const config = {
+  api: {
+    bodyParser: false, // Important for file uploads
+  },
+};
 
 export async function POST(req) {
   try {
@@ -32,25 +43,38 @@ export async function POST(req) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Generate unique file name
-    const filename = `${Date.now()}-${file.name.replace(/\s+/g, "-")}`;
+    // Upload to Cloudinary
+    const result = await new Promise((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        {
+          folder: "blog-images", // Organize images in a folder
+          resource_type: "auto",
+          transformation: [
+            { quality: "auto", fetch_format: "auto" }, // Optimize images
+          ],
+        },
+        (error, result) => {
+          if (error) {
+            console.error("Cloudinary upload error:", error);
+            reject(error);
+          } else {
+            resolve(result);
+          }
+        }
+      );
 
-    // Ensure uploads directory exists in public
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
-    if (!existsSync(uploadDir)) {
-      await mkdir(uploadDir, { recursive: true });
-      console.log("Created uploads directory:", uploadDir);
-    }
+      uploadStream.end(buffer);
+    });
 
-    // Save to public/uploads
-    const filePath = path.join(uploadDir, filename);
-    console.log("Saving file to:", filePath); // Debug log
-    await writeFile(filePath, buffer);
+    console.log("Upload successful:", result.secure_url);
 
-    // Return a relative URL
-    return NextResponse.json({ url: `/uploads/${filename}` });
+    // Return the Cloudinary URL
+    return NextResponse.json({
+      url: result.secure_url,
+      publicId: result.public_id, // Save this if you want to delete images later
+    });
   } catch (error) {
-    console.error("Upload error:", error.message, error.stack); // Detailed error logging
+    console.error("Upload error:", error.message, error.stack);
     return NextResponse.json(
       { error: "Upload failed", details: error.message },
       { status: 500 }

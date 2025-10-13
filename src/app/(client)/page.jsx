@@ -4,11 +4,12 @@ import Nav from "@/components/Nav";
 import SIdeBar from "@/components/SIdeBar";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import SuccessSubmit from "@/components/successSubmit";
 import { setVisitorCount } from "@/store/contextSlice"; // ✅ <-- You forgot this import
 
 const Page = () => {
   const dispatch = useDispatch();
-  const { visitorCount } = useSelector((state) => state.context);
+  const { visitorCount, emailSuccess } = useSelector((state) => state.context);
 
   useEffect(() => {
     async function trackVisitor() {
@@ -33,7 +34,9 @@ const Page = () => {
   return (
     <div className="min-h-screen pb-10 bg-neutral-50">
       <Nav />
-      <div className="flex w-full max-w-7xl max-h-[150vh] mx-auto justify-between gap-4 md:p-10 p-3 bg-white rounded-md shadow-md">
+      {emailSuccess && <SuccessSubmit />}
+
+      <div className="flex w-full max-w-7xl max-h-[1300px] mx-auto justify-between gap-4 md:p-10 p-3 bg-white rounded-md shadow-md">
         <BlogListing />
         <SIdeBar />
       </div>
