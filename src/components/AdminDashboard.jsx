@@ -14,6 +14,7 @@ import {
   ChevronRight,
   X,
   LogOut,
+  Menu,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadPosts } from "@/utils/postThunks";
@@ -25,6 +26,7 @@ const ScriboraDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [currentPage, setCurrentPage] = useState(1);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const postsPerPage = 6;
   const allBlogs = useSelector((state) => state.context.AllPost);
@@ -38,7 +40,7 @@ const ScriboraDashboard = () => {
   useEffect(() => {
     async function fetchVisitorCount() {
       try {
-        const res = await fetch("/api/visitors"); // GET request
+        const res = await fetch("/api/visitors");
         const data = await res.json();
         if (data.success) {
           dispatch(setVisitorCount(data.totalVisitors));
@@ -51,7 +53,6 @@ const ScriboraDashboard = () => {
     fetchVisitorCount();
   }, [dispatch]);
 
-  // ✅ Sort all blogs by latest (most recent first)
   const sortedBlogs = [...allBlogs].sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
@@ -85,7 +86,6 @@ const ScriboraDashboard = () => {
 
   const recentBlogs = sortedBlogs.slice(0, 5);
 
-  // Pagination logic
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentBlogs = sortedBlogs.slice(indexOfFirstPost, indexOfLastPost);
@@ -96,6 +96,7 @@ const ScriboraDashboard = () => {
       onClick={() => {
         setActiveTab(tabName);
         if (tabName === "blogs") setCurrentPage(1);
+        setSidebarOpen(false);
       }}
       className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 w-full ${
         activeTab === tabName
@@ -200,8 +201,29 @@ const ScriboraDashboard = () => {
           onConfirm={() => dispatch(logoutAdmin())}
         />
       )}
+
+      {/* Mobile Overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-gray-950 border-r border-gray-800 p-6 flex flex-col">
+      <aside
+        className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-gray-950 border-r border-gray-800 p-6 flex flex-col transform transition-transform duration-300 ease-in-out ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0`}
+      >
+        {/* Close button for mobile */}
+        <button
+          onClick={() => setSidebarOpen(false)}
+          className="absolute top-4 right-4 lg:hidden text-gray-400 hover:text-white"
+        >
+          <X size={24} />
+        </button>
+
         <div className="mb-8">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
             Scribora
@@ -233,14 +255,28 @@ const ScriboraDashboard = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto">
-        <div className="p-8">
+      <main className="flex-1 overflow-y-auto w-full">
+        {/* Mobile Header */}
+        <div className="lg:hidden bg-gray-950 border-b border-gray-800 p-4 flex items-center justify-between sticky top-0 z-30">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="text-white hover:text-indigo-400 transition-colors"
+          >
+            <Menu size={24} />
+          </button>
+          <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+            Scribora
+          </h1>
+          <div className="w-6"></div>
+        </div>
+
+        <div className="p-4 sm:p-6 lg:p-8">
           {/* Dashboard Tab */}
           {activeTab === "dashboard" && (
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-3xl font-bold text-white">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white">
                     Welcome back, Admin!
                   </h2>
                   <p className="text-gray-400 mt-1">
@@ -249,7 +285,7 @@ const ScriboraDashboard = () => {
                 </div>
                 <button
                   onClick={() => dispatch(setShowAddModal(true))}
-                  className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2 hover:shadow-lg hover:shadow-indigo-500/50 transition-all"
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2 hover:shadow-lg hover:shadow-indigo-500/50 transition-all w-full sm:w-auto justify-center"
                 >
                   <Plus size={20} />
                   Add New Post
@@ -257,7 +293,7 @@ const ScriboraDashboard = () => {
               </div>
 
               {/* Stats Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 {stats.map((stat, index) => (
                   <StatCard key={index} stat={stat} />
                 ))}
@@ -265,8 +301,8 @@ const ScriboraDashboard = () => {
 
               {/* Recent Blogs Table */}
               <div className="bg-gray-800 rounded-xl border border-gray-700">
-                <div className="p-6 border-b border-gray-700 flex items-center justify-between">
-                  <h3 className="text-xl font-semibold text-white">
+                <div className="p-4 sm:p-6 border-b border-gray-700 flex items-center justify-between">
+                  <h3 className="text-lg sm:text-xl font-semibold text-white">
                     Recent Blogs
                   </h3>
                   <button
@@ -309,16 +345,18 @@ const ScriboraDashboard = () => {
           {/* Blogs Tab */}
           {activeTab === "blogs" && (
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-3xl font-bold text-white">All Blogs</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                    All Blogs
+                  </h2>
                   <p className="text-gray-400 mt-1">
                     Manage and view all your blog posts
                   </p>
                 </div>
                 <button
                   onClick={() => dispatch(setShowAddModal(true))}
-                  className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2 hover:shadow-lg hover:shadow-indigo-500/50 transition-all"
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2 hover:shadow-lg hover:shadow-indigo-500/50 transition-all w-full sm:w-auto justify-center"
                 >
                   <Plus size={20} />
                   Add New Post
@@ -339,21 +377,20 @@ const ScriboraDashboard = () => {
               </div>
 
               {/* Blog Cards Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {currentBlogs.map((blog, idx) => (
                   <BlogCard key={idx} blog={blog} />
                 ))}
               </div>
 
               {/* Pagination */}
-              <div className="flex items-center justify-between bg-gray-800 rounded-lg p-4 border border-gray-700">
-                <p className="text-gray-400 text-sm">
+              <div className="flex flex-col sm:flex-row items-center justify-between bg-gray-800 rounded-lg p-4 border border-gray-700 gap-4">
+                <p className="text-gray-400 text-sm text-center sm:text-left">
                   Showing {indexOfFirstPost + 1} to{" "}
                   {Math.min(indexOfLastPost, sortedBlogs.length)} of{" "}
-                  {sortedBlogs.length}
-                  {allBlogs.length} blogs
+                  {sortedBlogs.length} blogs
                 </p>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap justify-center">
                   <button
                     onClick={() =>
                       setCurrentPage((prev) => Math.max(prev - 1, 1))
@@ -393,7 +430,9 @@ const ScriboraDashboard = () => {
           {/* Profile Tab */}
           {activeTab === "profile" && (
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-white">Admin Profile</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                Admin Profile
+              </h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Profile Card */}
@@ -491,7 +530,7 @@ const ScriboraDashboard = () => {
                 <h3 className="text-xl font-semibold text-white mb-6">
                   Activity Overview
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-indigo-400 mb-2">
                       {allBlogs.length}
