@@ -151,6 +151,41 @@ const ScriboraDashboard = () => {
     </tr>
   );
 
+  const RecentBlogCard = ({ blog }) => (
+    <div className="bg-gray-750 rounded-lg p-4 border border-gray-700 hover:border-indigo-500 transition-all">
+      <div className="flex gap-4">
+        <img
+          src={blog.image}
+          alt={blog.title}
+          className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
+        />
+        <div className="flex-1 min-w-0">
+          <h4 className="text-white font-medium mb-2 line-clamp-2">
+            {blog.title}
+          </h4>
+          <div className="flex flex-col gap-1 text-sm text-gray-400">
+            <div className="flex items-center gap-2">
+              <MapPin size={12} />
+              <span>{blog.country}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Calendar size={12} />
+              <span>
+                {blog.createdAt && !isNaN(new Date(blog.createdAt))
+                  ? new Date(blog.createdAt).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })
+                  : "Date Not Available"}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   const BlogCard = ({ blog }) => (
     <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 group">
       <div className="relative overflow-hidden">
@@ -299,7 +334,7 @@ const ScriboraDashboard = () => {
                 ))}
               </div>
 
-              {/* Recent Blogs Table */}
+              {/* Recent Blogs - Desktop Table / Mobile Cards */}
               <div className="bg-gray-800 rounded-xl border border-gray-700">
                 <div className="p-4 sm:p-6 border-b border-gray-700 flex items-center justify-between">
                   <h3 className="text-lg sm:text-xl font-semibold text-white">
@@ -313,7 +348,9 @@ const ScriboraDashboard = () => {
                     <ChevronRight size={16} />
                   </button>
                 </div>
-                <div className="overflow-x-auto">
+
+                {/* Desktop Table View */}
+                <div className="hidden md:block overflow-x-auto">
                   <table className="w-full">
                     <thead className="bg-gray-900">
                       <tr>
@@ -337,6 +374,13 @@ const ScriboraDashboard = () => {
                       ))}
                     </tbody>
                   </table>
+                </div>
+
+                {/* Mobile Card View */}
+                <div className="md:hidden p-4 space-y-3">
+                  {recentBlogs.map((blog, idx) => (
+                    <RecentBlogCard key={idx} blog={blog} />
+                  ))}
                 </div>
               </div>
             </div>

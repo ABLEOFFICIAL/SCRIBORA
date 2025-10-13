@@ -155,19 +155,24 @@ export default function AddPostModal() {
   return (
     addPostModal && (
       <div className="">
-        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center">
+        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center px-2 sm:px-4">
           <X
             onClick={() => dispatch(setShowAddModal(false))}
-            className="bg-white size-7 rounded-full p-1 absolute top-1/6 right-1/4 m-4 cursor-pointer"
+            className="bg-white size-7 rounded-full p-1 absolute top-4 right-4 sm:top-8 sm:right-10 m-2 cursor-pointer"
           />
-          <div className="bg-white p-6 rounded-lg w-2/5 max-h-[80vh] overflow-y-auto">
-            <h2 className="text-xl font-semibold mb-4">Create Post</h2>
+          <div
+            style={{ scrollbarWidth: "none" }}
+            className="bg-white p-5 sm:p-6 rounded-lg w-full sm:w-4/5 md:w-3/5 lg:w-2/5 max-h-[85vh] overflow-y-auto"
+          >
+            <h2 className="text-lg sm:text-xl font-semibold mb-4 text-center sm:text-left">
+              Create Post
+            </h2>
 
             {/* Title */}
             <input
               type="text"
               placeholder="Title"
-              className="w-full p-2 border rounded mb-3"
+              className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
               value={post.title}
               onChange={(e) => setPost({ ...post, title: e.target.value })}
             />
@@ -176,7 +181,7 @@ export default function AddPostModal() {
             <input
               type="text"
               placeholder="Slug"
-              className="w-full p-2 border rounded mb-3"
+              className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
               value={post.slug}
               onChange={(e) => setPost({ ...post, slug: e.target.value })}
             />
@@ -185,17 +190,17 @@ export default function AddPostModal() {
             <input
               type="text"
               placeholder="Author"
-              className="w-full p-2 border rounded mb-3"
+              className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
               value={post.author}
               onChange={(e) => setPost({ ...post, author: e.target.value })}
             />
 
             {/* Category (multi-select checkboxes) */}
             <div className="mb-3">
-              <p className="font-medium mb-1">Category</p>
+              <p className="font-medium mb-1 text-sm sm:text-base">Category</p>
               <div className="flex flex-wrap gap-2">
                 {categories.map((cat) => (
-                  <label key={cat} className="flex items-center gap-1">
+                  <label key={cat} className="flex items-center gap-1 text-sm">
                     <input
                       type="checkbox"
                       checked={post.category.includes(cat)}
@@ -209,10 +214,10 @@ export default function AddPostModal() {
 
             {/* Tags (multi-select checkboxes) */}
             <div className="mb-3">
-              <p className="font-medium mb-1">Tags</p>
+              <p className="font-medium mb-1 text-sm sm:text-base">Tags</p>
               <div className="flex flex-wrap gap-2">
                 {tags.map((tag) => (
-                  <label key={tag} className="flex items-center gap-1">
+                  <label key={tag} className="flex items-center gap-1 text-sm">
                     <input
                       type="checkbox"
                       checked={post.tags.includes(tag)}
@@ -226,7 +231,7 @@ export default function AddPostModal() {
 
             {/* Country dropdown */}
             <select
-              className="w-full p-2 border rounded mb-3"
+              className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
               value={post.country}
               onChange={(e) => setPost({ ...post, country: e.target.value })}
             >
@@ -240,7 +245,7 @@ export default function AddPostModal() {
 
             {/* Trending select */}
             <select
-              className="w-full p-2 border rounded mb-3"
+              className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
               value={post.trending}
               onChange={(e) =>
                 setPost({ ...post, trending: e.target.value === "true" })
@@ -253,7 +258,7 @@ export default function AddPostModal() {
             {/* Excerpt */}
             <textarea
               placeholder="Excerpt"
-              className="w-full p-2 border rounded mb-3"
+              className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
               value={post.excerpt}
               onChange={(e) => setPost({ ...post, excerpt: e.target.value })}
             />
@@ -262,7 +267,7 @@ export default function AddPostModal() {
             <input
               type="file"
               accept="image/*"
-              className="w-full p-2 border rounded mb-3"
+              className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
               onChange={(e) => handleImageUpload(e.target.files[0])}
             />
 
@@ -270,7 +275,7 @@ export default function AddPostModal() {
             <input
               type="text"
               placeholder="Reading Time (e.g. 6 min read)"
-              className="w-full p-2 border rounded mb-3"
+              className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
               value={post.readingTime}
               onChange={(e) =>
                 setPost({ ...post, readingTime: e.target.value })
@@ -280,12 +285,17 @@ export default function AddPostModal() {
             {/* Content Blocks */}
             <div className="space-y-4 mt-6">
               {post.content.map((block, index) => (
-                <div key={index} className="p-4 border rounded bg-gray-50">
-                  <h4 className="font-semibold mb-2">Block {index + 1}</h4>
+                <div
+                  key={index}
+                  className="p-3 sm:p-4 border rounded bg-gray-50"
+                >
+                  <h4 className="font-semibold mb-2 text-sm sm:text-base">
+                    Block {index + 1}
+                  </h4>
                   <input
                     type="text"
                     placeholder="Subtitle"
-                    className="w-full p-2 border rounded mb-2"
+                    className="w-full p-2 border rounded mb-2 text-sm sm:text-base"
                     value={block.subtitle}
                     onChange={(e) =>
                       updateContentBlock(index, "subtitle", e.target.value)
@@ -294,42 +304,18 @@ export default function AddPostModal() {
                   {block.type === "text" && (
                     <textarea
                       placeholder="Enter text..."
-                      className="w-full p-2 border rounded"
+                      className="w-full p-2 border rounded text-sm sm:text-base"
                       value={block.text}
                       onChange={(e) =>
                         updateContentBlock(index, "text", e.target.value)
                       }
                     />
                   )}
-                  {/* {block.type === "image" && (
-                    <>
-                      <textarea
-                        placeholder="Enter text..."
-                        className="w-full p-2 border rounded mb-2"
-                        value={block.text}
-                        onChange={(e) =>
-                          updateContentBlock(index, "text", e.target.value)
-                        }
-                      />
-                      <input
-                        type="file"
-                        accept="image/*"
-                        className="w-full p-2 border rounded mb-3"
-                        onChange={(e) => {
-                          if (e.target.files && e.target.files[0]) {
-                            handleImageUpload(e.target.files[0]);
-                          } else {
-                            console.error("No file selected");
-                          }
-                        }}
-                      />
-                    </>
-                  )} */}
                   {block.type === "image" && (
                     <>
                       <textarea
                         placeholder="Enter text..."
-                        className="w-full p-2 border rounded mb-2"
+                        className="w-full p-2 border rounded mb-2 text-sm sm:text-base"
                         value={block.text}
                         onChange={(e) =>
                           updateContentBlock(index, "text", e.target.value)
@@ -338,14 +324,14 @@ export default function AddPostModal() {
                       <input
                         type="file"
                         accept="image/*"
-                        className="w-full p-2 border rounded mb-3"
+                        className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
                         onChange={(e) => {
                           if (e.target.files && e.target.files[0]) {
                             handleImageUpload(
                               e.target.files[0],
                               "image",
                               index
-                            ); // Pass index here
+                            );
                           } else {
                             console.error("No file selected");
                           }
@@ -356,7 +342,7 @@ export default function AddPostModal() {
                   {block.type === "table" && (
                     <textarea
                       placeholder="Paste table data (JSON/CSV)"
-                      className="w-full p-2 border rounded"
+                      className="w-full p-2 border rounded text-sm sm:text-base"
                       value={block.table}
                       onChange={(e) =>
                         updateContentBlock(index, "table", e.target.value)
@@ -368,25 +354,25 @@ export default function AddPostModal() {
             </div>
 
             {/* Add Content Buttons */}
-            <div className="flex gap-2 mt-4">
+            <div className="flex flex-wrap gap-2 mt-4 justify-center sm:justify-start">
               <button
                 type="button"
                 onClick={() => addContentBlock("text")}
-                className="px-2 py-1 bg-blue-500 text-white rounded font-semibold text-xs"
+                className="px-3 py-1 bg-blue-500 text-white rounded font-semibold text-xs sm:text-sm"
               >
                 Add Text Block
               </button>
               <button
                 type="button"
                 onClick={() => addContentBlock("image")}
-                className="px-2 py-1 bg-amber-500 text-white rounded font-semibold text-xs"
+                className="px-3 py-1 bg-amber-500 text-white rounded font-semibold text-xs sm:text-sm"
               >
                 Add Image Block
               </button>
               <button
                 type="button"
                 onClick={() => addContentBlock("table")}
-                className="px-2 py-1 bg-neutral-500 text-white rounded font-semibold text-xs"
+                className="px-3 py-1 bg-neutral-500 text-white rounded font-semibold text-xs sm:text-sm"
               >
                 Add Table Block
               </button>
@@ -396,13 +382,12 @@ export default function AddPostModal() {
             <button
               type="submit"
               onClick={handleSave}
-              className="mt-6 w-full bg-black text-white py-2 rounded"
+              className="mt-6 w-full bg-black text-white py-2 rounded text-sm sm:text-base"
             >
               Save Post
             </button>
           </div>
         </div>
-        ;
       </div>
     )
   );
