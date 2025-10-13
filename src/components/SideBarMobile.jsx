@@ -69,7 +69,7 @@ export default function SideBarMobile() {
     showMobileSideBar && (
       <div
         ref={sidebarRef}
-        className="fixed top-0 bottom-0 left-0 w-[60vw] p-5 overflow-hidden bg-white z-[1999] md:hidden min-h-screen shadow-lg"
+        className="fixed top-0 bottom-0 left-0 w-[60vw] p-5 overflow-hidden bg-white z-[2999] md:hidden min-h-screen shadow-lg"
       >
         <CircleChevronLeft
           onClick={() => dispatch(setShowMobileSideBar(false))}
