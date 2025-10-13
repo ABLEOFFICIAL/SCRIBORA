@@ -1,9 +1,10 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
+// ==================== 3. src/app/(admin)/admin/layout.js ====================
+
 import "../../globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
-import AdminSideBar from "@/components/AdminSideBar";
 import ReduxProvider from "@/provider/ReduxProvider";
 import AddPostModal from "@/components/AddPostModal";
+import ProtectedRoute from "./ProtectedRoute";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Admin Dashboard",
-  description: "Admin area for the blog",
+  title: "Scribora Admin Dashboard",
+  description: "Admin area for Scribora blog management",
 };
 
 export default function AdminLayout({ children }) {
@@ -28,11 +29,10 @@ export default function AdminLayout({ children }) {
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <ReduxProvider>
-            <SidebarProvider>
+            <ProtectedRoute>
               <AddPostModal />
-              <AdminSideBar />
-              <main>{children}</main>
-            </SidebarProvider>
+              {children}
+            </ProtectedRoute>
           </ReduxProvider>
         </div>
       </body>

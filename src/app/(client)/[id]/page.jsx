@@ -9,6 +9,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import React, { use, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import emailjs from "@emailjs/browser";
+import SuccessSubmit from "@/components/successSubmit";
 
 const BlogsDetails = ({ params }) => {
   const { id } = use(params);
@@ -30,6 +31,20 @@ const BlogsDetails = ({ params }) => {
   const [formStatus, setFormStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSharing, setIsSharing] = useState(false);
+  const [emailSuccess, setEmailSuccess] = useState(false);
+  const [commentSuccess, setCommentSuccess] = useState(false);
+
+  useEffect(() => {
+    // Increment views when user visits post
+    async function addView() {
+      try {
+        await fetch(`/api/posts/${id}/view`, { method: "PATCH" });
+      } catch (error) {
+        console.error("Failed to update views:", error);
+      }
+    }
+    addView();
+  }, [id]);
 
   useEffect(() => {
     if (window.location.hash === "#comments") {
@@ -95,7 +110,6 @@ const BlogsDetails = ({ params }) => {
   const handleSubscribe = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setFormStatus("");
 
     const serviceID = "service_xw05ht7";
     const templateID = "template_vqxo8x7";
@@ -107,20 +121,26 @@ const BlogsDetails = ({ params }) => {
 
     emailjs.send(serviceID, templateID, templateParams, publicKey).then(
       () => {
-        setFormStatus("Message sent successfully!");
         setEmail("");
         setIsSubmitting(false);
       },
       (error) => {
-        setFormStatus("Failed to send message. Please try again.");
         setIsSubmitting(false);
         console.error("EmailJS error:", error);
       }
     );
+    setEmailSuccess(true);
+    setTimeout(() => {
+      setEmailSuccess(false);
+    }, 3000);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setCommentSuccess(true);
+    setTimeout(() => {
+      setCommentSuccess(false);
+    }, 3000);
     dispatch(
       addComment({
         postId: id,
@@ -149,6 +169,10 @@ const BlogsDetails = ({ params }) => {
       ) : (
         clickedPost && (
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 mt-10">
+            {emailSuccess && <SuccessSubmit />}
+            {commentSuccess && (
+              <SuccessSubmit text="Comment submitted successfully!" />
+            )}
             <div className="">
               <span className="font-semibold text-blue-500 flex flex-wrap items-center gap-2 py-3 sm:py-5 border-b border-b-neutral-200 text-sm sm:text-base">
                 <Link href={"/"} className="hover:underline">

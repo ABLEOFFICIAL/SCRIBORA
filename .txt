@@ -350,3 +350,196 @@
         image: "/nadzeya-matskevich-z90CJOaDoI4-unsplash.jpg",      }]
     },
 ]
+
+
+          {/* Add Post Modal */}
+          {showAddModal && (
+            <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-gray-900 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden border border-gray-700 shadow-2xl">
+                {/* Modal Header */}
+                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4 flex items-center justify-between">
+                  <h2 className="text-2xl font-bold text-white">
+                    Create New Post
+                  </h2>
+                  <button
+                    onClick={() => setShowAddModal(false)}
+                    className="text-white hover:bg-white/20 rounded-full p-2 transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+
+                {/* Modal Body */}
+                <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
+                  <form onSubmit={handleSave} className="space-y-6">
+                    {/* Basic Info Section */}
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                        <FileText size={20} className="text-indigo-400" />
+                        Basic Information
+                      </h3>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-300 mb-2">
+                            Title
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="Enter post title"
+                            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                            value={post.title}
+                            onChange={(e) =>
+                              setPost({ ...post, title: e.target.value })
+                            }
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-300 mb-2">
+                            Slug
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="post-slug"
+                            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                            value={post.slug}
+                            onChange={(e) =>
+                              setPost({ ...post, slug: e.target.value })
+                            }
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-300 mb-2">
+                            Author
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="Author name"
+                            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                            value={post.author}
+                            onChange={(e) =>
+                              setPost({ ...post, author: e.target.value })
+                            }
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-300 mb-2">
+                            Reading Time
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="e.g. 5 min read"
+                            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                            value={post.readingTime}
+                            onChange={(e) =>
+                              setPost({ ...post, readingTime: e.target.value })
+                            }
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-300 mb-2">
+                            Country
+                          </label>
+                          <select
+                            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                            value={post.country}
+                            onChange={(e) =>
+                              setPost({ ...post, country: e.target.value })
+                            }
+                          >
+                            <option value="">Select Country</option>
+                            {countries.map((c) => (
+                              <option key={c} value={c}>
+                                {c}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-300 mb-2">
+                            Trending Status
+                          </label>
+                          <select
+                            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                            value={post.trending}
+                            onChange={(e) =>
+                              setPost({
+                                ...post,
+                                trending: e.target.value === "true",
+                              })
+                            }
+                          >
+                            <option value="false">Not Trending</option>
+                            <option value="true">Trending</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                          Excerpt
+                        </label>
+                        <textarea
+                          placeholder="Brief description of the post..."
+                          rows="3"
+                          className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors resize-none"
+                          value={post.excerpt}
+                          onChange={(e) =>
+                            setPost({ ...post, excerpt: e.target.value })
+                          }
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                          Featured Image
+                        </label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 file:cursor-pointer focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                          onChange={(e) => handleImageUpload(e.target.files[0])}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Categories Section */}
+                    <div className="space-y-3">
+                      <h3 className="text-lg font-semibold text-white">
+                        Categories
+                      </h3>
+                      <div className="flex flex-wrap gap-3">
+                        {categories.map((cat) => (
+                          <label
+                            key={cat}
+                            className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 cursor-pointer transition-all ${
+                              post.category.includes(cat)
+                                ? "bg-indigo-600 border-indigo-500 text-white"
+                                : "bg-gray-800 border-gray-700 text-gray-300 hover:border-gray-600"
+                            }`}
+                          >
+                            <input
+                              type="checkbox"
+                              className="hidden"
+                              checked={post.category.includes(cat)}
+                              onChange={() => toggleSelection("category", cat)}
+                            />
+                            <span className="text-sm font-medium">{cat}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          )}

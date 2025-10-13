@@ -1,13 +1,25 @@
-import AdminDashboard from "@/components/AdminDashboard";
-import { Sidebar } from "@/components/ui/sidebar";
-import React from "react";
+// import React from "react";
+// import AdminDashboard from "./AdminDashboard";
 
-const Admin = () => {
+// export default function Admin() {
+//   return (
+//     <div>
+//       <AdminDashboard />
+//     </div>
+//   );
+// }
+// ==================== 4. src/app/(admin)/admin/page.js ====================
+
+"use client";
+import { useSelector } from "react-redux";
+import AdminDashboard from "@/components/AdminDashboard";
+
+export default function AdminDashboardPage() {
+  const { admin } = useSelector((state) => state.auth);
+
   return (
-    <div className="bg-black">
+    <div>
       <AdminDashboard />
     </div>
   );
-};
-
-export default Admin;
+}

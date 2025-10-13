@@ -1,4 +1,6 @@
 // src/app/(client)/api/comments/route.js
+export const runtime = "nodejs";
+
 import clientPromise from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 

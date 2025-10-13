@@ -91,7 +91,7 @@ export default function Header() {
                 }}
                 placeholder="Search blogs..."
                 name="search"
-                className="px-10 bg-white w-full"
+                className="px-10 bg-white w-full border border-gray-300"
               />
               <div className="absolute left-0 top-0 h-full w-10 flex items-center justify-center text-gray-500">
                 <Search />

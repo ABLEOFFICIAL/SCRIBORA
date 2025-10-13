@@ -12,6 +12,7 @@ export default function BlogListing() {
     (state) => state.context
   );
   const dispatch = useDispatch();
+  console.log(AllPost);
 
   useEffect(() => {
     dispatch(loadPosts()); // fetch from DB when component mounts
@@ -26,12 +27,17 @@ export default function BlogListing() {
   }
 
   // Choose which list to display
-  const postsToShow =
+  let postsToShow =
     filteredPosts.length > 0
       ? filteredPosts
       : AllPost.length > 0
       ? AllPost
       : [];
+
+  // ✅ Sort posts by latest (most recent first)
+  postsToShow = [...postsToShow].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
 
   // ✅ If there are no posts, show fallback component
   if (postsToShow.length === 0) {
@@ -43,7 +49,10 @@ export default function BlogListing() {
   }
 
   return (
-    <div className="pr-10 flex flex-col md:border-r w-full lg:w-3/5 border-r-neutral-300">
+    <div
+      style={{ scrollbarWidth: "none" }}
+      className="pr-10 flex flex-col md:border-r w-full lg:w-3/5 border-r-neutral-300 lg:max-h-full lg:overflow-y-auto"
+    >
       {postsToShow.map((post, idx) => (
         <Blog key={idx} post={post} />
       ))}

@@ -1,23 +1,23 @@
 "use client";
-// import { posts } from "@/lib/posts";
 import React from "react";
 import Card from "./Card";
 import Newsletter from "./Newsletter";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setAllPost,
-  setCategory,
-  setFilteredPosts,
-} from "@/store/contextSlice";
+import { setCategory, setFilteredPosts } from "@/store/contextSlice";
 
-export default function SIdeBar() {
+export default function SideBar() {
   const dispatch = useDispatch();
   const allPost = useSelector((state) => state.context.AllPost);
-  const Trending = allPost.filter((post) => post.trending);
-  console.log(Trending);
+
+  // ✅ Filter and sort trending posts by latest first
+  const Trending = allPost
+    .filter((post) => post.trending)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // latest first
+    .slice(0, 4); // show only the 4 newest trending posts
 
   return (
-    <div className="w-2/5  flex-col gap-10 hidden lg:flex">
+    <div className="w-2/5 flex-col gap-10 hidden lg:flex">
+      {/* category buttons */}
       <div className="flex flex-wrap gap-2">
         {[
           "Local",
@@ -55,21 +55,19 @@ export default function SIdeBar() {
       <div>
         <h2 className="text-3xl font-serif font-normal mb-5">Trending</h2>
         <div className="flex flex-col gap-3">
-          {Trending.slice(0, 4).map((post, idx) => (
+          {Trending.map((post, idx) => (
             <Card href={`/${post._id}`} key={idx}>
               <div>
-                <div className="flex gap-2 mb-3">
+                <div className="flex gap-2 mb-3 flex-wrap">
                   {post.category.map((cat, idx) => (
                     <span
                       key={idx}
                       className="text-blue-600 bg-blue-200 w-max px-2 py-1 rounded font-semibold text-xs"
                     >
-                      {" "}
-                      {cat}{" "}
+                      {cat}
                     </span>
                   ))}
                 </div>
-
                 <h3 className="text-xl font-medium font-serif">{post.title}</h3>
               </div>
               <div className="w-40 h-32 flex-shrink-0">

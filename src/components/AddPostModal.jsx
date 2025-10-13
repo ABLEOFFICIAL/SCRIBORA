@@ -10,13 +10,34 @@ import { createPost } from "@/utils/helper";
 export default function AddPostModal() {
   const dispatch = useDispatch();
   const addPostModal = useSelector((state) => state.context.showAddModal);
-  const categories = ["International", "Politics", "Technology", "Health"];
+  const categories = [
+    "Local",
+    "World",
+    "International",
+    "Politics",
+    "Fashion",
+    "Beauty & Health",
+    "Relationships",
+    "Food & Travel",
+    "Movies",
+    "Music",
+    "Celebrities",
+    "Business",
+    "Programming",
+    "Design",
+    "Marketing",
+  ];
   const tags = [
     "Local News",
     "Digital Media",
     "Community",
     "Breaking",
     "Sports",
+    "Health",
+    "Science",
+    "Technology",
+    "Education",
+    "Culture",
   ];
   const countries = ["Nigeria", "USA", "UK", "Canada", "Germany"];
 
@@ -60,30 +81,19 @@ export default function AddPostModal() {
     });
   };
 
-  // const handleSave = async (e) => {
-  //   e.preventDefault();
-
-  //   // For now just log the post
-  //   console.log("Post to Save:", post);
-  //   // come back here - - - - - - - - - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  //   try {
-  //     const newPost = await createPost(post);
-  //   } catch (err) {
-  //     console.error("Failed to create post", err);
-  //   }
-  // };
   const handleSave = async (e) => {
     e.preventDefault();
 
     try {
-      console.log("Post data to save:", post); // Log post data for debugging
-      const newPost = await createPost(post);
+      const postWithViews = { ...post, views: 0 }; // Ensure views: 0
+      console.log("Post data to save:", postWithViews);
+      const newPost = await createPost(postWithViews);
       if (!newPost) {
         throw new Error("Failed to create post");
       }
       console.log("Post created successfully:", newPost);
-      dispatch(AddPost({ ...post, _id: newPost.insertedId })); // Add _id to post for Redux
-      dispatch(setShowAddModal(false)); // Close the modal
+      dispatch(AddPost({ ...postWithViews, _id: newPost.insertedId }));
+      dispatch(setShowAddModal(false));
       setPost({
         title: "",
         slug: "",
@@ -96,42 +106,13 @@ export default function AddPostModal() {
         image: null,
         readingTime: "",
         content: [],
-      }); // Reset form
+        views: 0, // Reset with views
+      });
     } catch (err) {
       console.error("Failed to create post:", err);
       alert("Failed to create post. Check the console for details.");
     }
   };
-
-  //   handle image upload
-  // const handleImageUpload = async (file, field = "image", index = null) => {
-  //   if (!file) {
-  //     console.error("No file selected");
-  //     return;
-  //   }
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-
-  //   try {
-  //     const res = await fetch("/api/upload", {
-  //       method: "POST",
-  //       body: formData,
-  //     });
-  //     const data = await res.json();
-  //     console.log("Upload response:", data); // Log the response
-  //     if (data.url) {
-  //       if (index !== null) {
-  //         updateContentBlock(index, field, data.url);
-  //       } else {
-  //         setPost((prev) => ({ ...prev, image: data.url }));
-  //       }
-  //     } else {
-  //       console.error("No URL returned from upload API");
-  //     }
-  //   } catch (error) {
-  //     console.error("Image upload failed:", error);
-  //   }
-  // };
 
   const handleImageUpload = async (file, field = "image", index = null) => {
     if (!file) {

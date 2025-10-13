@@ -1,4 +1,6 @@
 // app/api/posts/[id]/route.js
+export const runtime = "nodejs";
+
 import clientPromise from "@/lib/mongodb";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
@@ -50,6 +52,23 @@ export async function PUT(request, { params }) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
+
+// export async function POST(req, { params }) {
+//   await connectDB();
+
+//   const postId = params.id;
+
+//   try {
+//     const post = await Post.findByIdAndUpdate(
+//       postId,
+//       { $inc: { views: 1 } }, // increment by 1
+//       { new: true }
+//     );
+//     return NextResponse.json({ success: true, views: post.views });
+//   } catch (error) {
+//     return NextResponse.json({ success: false, error: error.message });
+//   }
+// }
 
 export async function DELETE(request, { params }) {
   try {

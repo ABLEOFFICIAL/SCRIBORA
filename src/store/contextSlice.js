@@ -24,6 +24,10 @@ const contextSlice = createSlice({
     showMobileSideBar: false,
     showSearchBar: false,
     searchMobile: "",
+    selectedCountry: "all",
+
+    // visitor count
+    visitorCount: 0,
   },
   reducers: {
     setCategory(state, action) {
@@ -84,6 +88,38 @@ const contextSlice = createSlice({
     setSearchMobile(state, action) {
       state.searchMobile = action.payload;
     },
+    // visitor count
+    setVisitorCount(state, action) {
+      state.visitorCount = action.payload;
+    },
+    setSelectedCountry(state, action) {
+      state.selectedCountry = action.payload;
+    },
+    filterByCountry(state, action) {
+      const country = action.payload;
+      state.selectedCountry = country;
+
+      // First, start with all posts
+      let filtered = state.AllPost;
+
+      // Filter by country (if not "all")
+      if (country !== "all") {
+        filtered = filtered.filter(
+          (post) => post.country?.toLowerCase() === country.toLowerCase()
+        );
+      }
+
+      // Then, also filter by selected category (if any)
+      if (state.category !== "allcategories") {
+        filtered = filtered.filter((post) =>
+          post.category.some(
+            (c) => c.toLowerCase() === state.category.toLowerCase()
+          )
+        );
+      }
+
+      state.filteredPosts = filtered;
+    },
   },
   // extraReducers: (builder) => {
 
@@ -110,5 +146,8 @@ export const {
   setShowMobileSideBar,
   setShowSearchBar,
   setSearchMobile,
+  setVisitorCount,
+  filterByCountry,
+  setSelectedCountry,
 } = contextSlice.actions;
 export default contextSlice.reducer;

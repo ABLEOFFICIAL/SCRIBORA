@@ -1,28 +1,56 @@
 "use client";
 import { ChevronDown } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 function HoverDropDown({ label, items, className, onClick }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const buttonRef = useRef(null);
 
-  // Detect screen size to toggle between hover and click
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768); // 768px is typically the md breakpoint
+      setIsMobile(window.innerWidth < 1024);
     };
-
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
-
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  // Handle click for mobile
+  // Close dropdown on scroll (mobile only)
+  useEffect(() => {
+    if (!isMobile || !isOpen) return;
+
+    const handleScroll = () => {
+      setIsOpen(false);
+    };
+
+    window.addEventListener("scroll", handleScroll, true);
+    return () => window.removeEventListener("scroll", handleScroll, true);
+  }, [isMobile, isOpen]);
+
   const handleClick = () => {
     if (isMobile) {
       setIsOpen((prev) => !prev);
     }
+  };
+
+  const getDropdownPosition = () => {
+    if (isMobile && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      const dropdownWidth = 160;
+      const viewportWidth = window.innerWidth;
+      let left = rect.left;
+
+      if (left + dropdownWidth > viewportWidth) {
+        left = viewportWidth - dropdownWidth - 10;
+      }
+
+      return {
+        top: `${rect.bottom + 4}px`,
+        left: `${left}px`,
+      };
+    }
+    return {};
   };
 
   return (
@@ -34,16 +62,20 @@ function HoverDropDown({ label, items, className, onClick }) {
       tabIndex={0}
       role="button"
       aria-expanded={isOpen}
+      ref={buttonRef}
     >
-      {/* Button / Label */}
       <div className="flex items-center gap-1 cursor-pointer px-3 py-1 rounded">
         <span>{label}</span>
         <ChevronDown className="size-4" />
       </div>
 
-      {/* Dropdown */}
       {isOpen && (
-        <ul className="fixed left-auto font-normal rounded shadow-md w-40 bg-white border border-gray-200 z-[1000]">
+        <ul
+          className={`${
+            isMobile ? "fixed" : "absolute"
+          } mt-1 font-normal rounded shadow-lg w-40 bg-white border border-gray-200 z-[3000]`}
+          style={getDropdownPosition()}
+        >
           {items.map((item, idx) => (
             <li
               key={idx}
@@ -53,7 +85,7 @@ function HoverDropDown({ label, items, className, onClick }) {
                 onClick(item);
                 setIsOpen(false);
               }}
-              className="hover:bg-neutral-200 text-neutral-800 px-3 py-2 cursor-pointer"
+              className="hover:bg-neutral-200 text-neutral-800 px-3 py-2 cursor-pointer first:rounded-t last:rounded-b"
             >
               {item}
             </li>
