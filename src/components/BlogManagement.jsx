@@ -10,163 +10,186 @@ import {
   Tag,
   User,
   Clock,
+  ChevronRight,
 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { setShowAddModal, setEditPost, removePost } from "@/store/contextSlice";
 import { deletePost as deletePostAPI } from "@/utils/helper";
+import Link from "next/link";
 
-// View Blog Modal Component
+// View Blog Modal Component - Admin Version (Simplified)
 const ViewBlogModal = ({ blog, onClose, onEdit, onDelete }) => {
   if (!blog) return null;
 
   return (
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl">
-        <div className="relative">
-          <img
-            src={blog.image}
-            alt={blog.title}
-            className="w-full h-64 object-cover"
-          />
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full transition-colors"
-          >
-            <X size={20} />
-          </button>
-        </div>
+      <div className="bg-white rounded-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden shadow-2xl">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white p-2 rounded-full transition-colors shadow-lg"
+        >
+          <X size={20} />
+        </button>
 
+        {/* Content */}
         <div
-          className="p-6 overflow-y-auto max-h-[calc(90vh-16rem)]"
+          className="overflow-y-auto max-h-[90vh]"
           style={{ scrollbarWidth: "thin" }}
         >
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            {blog.title}
-          </h1>
-
-          <div className="flex flex-wrap gap-4 mb-6 text-sm text-gray-600">
-            <div className="flex items-center gap-2">
-              <User size={16} />
-              <span>{blog.author}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Calendar size={16} />
-              <span>
-                {blog.createdAt && !isNaN(new Date(blog.createdAt))
-                  ? new Date(blog.createdAt).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    })
-                  : "Date Not Available"}
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
+            {/* Breadcrumb */}
+            <div className="pt-10">
+              <span className="font-semibold text-blue-500 flex flex-wrap items-center gap-2 py-3 sm:py-5 border-b border-b-neutral-200 text-sm sm:text-base">
+                <span className="hover:underline cursor-pointer">Home</span>
+                <ChevronRight className="size-3 text-neutral-600" />
+                {blog.category && blog.category[0]
+                  ? blog.category[0]
+                  : "General"}
               </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin size={16} />
-              <span>{blog.country}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock size={16} />
-              <span>{blog.readingTime || "5 min read"}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Eye size={16} />
-              <span>{blog.views?.toLocaleString() || 0} views</span>
-            </div>
-          </div>
 
-          {blog.category && blog.category.length > 0 && (
-            <div className="mb-4">
-              <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                <Tag size={16} />
-                Categories
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {blog.category.map((cat, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium"
-                  >
-                    {cat}
-                  </span>
-                ))}
+              {/* Title Section */}
+              <div className="py-3 sm:py-5 border-b border-b-neutral-200">
+                <h2 className="font-medium font-serif text-2xl sm:text-4xl leading-snug">
+                  {blog.title}
+                </h2>
+                <p className="text-xs sm:text-sm text-gray-600 font-normal py-2 sm:py-3">
+                  Posted on{" "}
+                  {blog.createdAt && !isNaN(new Date(blog.createdAt))
+                    ? new Date(blog.createdAt).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric",
+                      })
+                    : "Date Not Available"}{" "}
+                  by {blog.author}
+                </p>
               </div>
-            </div>
-          )}
 
-          {blog.tags && blog.tags.length > 0 && (
-            <div className="mb-6">
-              <h3 className="font-semibold text-gray-900 mb-2">Tags</h3>
-              <div className="flex flex-wrap gap-2">
-                {blog.tags.map((tag, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-                  >
-                    #{tag}
-                  </span>
-                ))}
+              {/* Excerpt & Main Image */}
+              <div className="py-4 sm:py-5 border-b border-b-neutral-200 flex flex-col gap-3">
+                <p className="font-semibold text-base sm:text-lg leading-relaxed">
+                  {blog.excerpt}
+                </p>
+                <img
+                  src={blog.image}
+                  alt={blog.title}
+                  className="w-full h-56 sm:h-[60vh] object-cover object-center rounded"
+                />
               </div>
-            </div>
-          )}
 
-          {blog.excerpt && (
-            <div className="mb-6">
-              <h3 className="font-semibold text-gray-900 mb-2">Excerpt</h3>
-              <p className="text-gray-700 italic">{blog.excerpt}</p>
-            </div>
-          )}
+              {/* Author & Country Info */}
+              <div className="py-4 sm:py-5 border-b border-b-neutral-200 flex flex-wrap items-center gap-2 text-sm">
+                <User className="bg-neutral-300 rounded-full p-1 size-8" />
+                <span className="text-sm text-neutral-800 font-semibold">
+                  {blog.author}
+                </span>
+                <span className="h-6 w-px bg-neutral-300"></span>
+                <span className="text-sm text-neutral-800 font-semibold">
+                  {blog.country}
+                </span>
+                <span className="h-6 w-px bg-neutral-300"></span>
+                <span className="text-sm text-neutral-600">
+                  <Clock size={14} className="inline mr-1" />
+                  {blog.readingTime || "5 min read"}
+                </span>
+              </div>
 
-          {blog.content && blog.content.length > 0 && (
-            <div className="space-y-6">
-              <h3 className="font-semibold text-gray-900 text-xl">Content</h3>
-              {blog.content.map((block, idx) => (
-                <div key={idx} className="space-y-3">
-                  {block.subtitle && (
-                    <h4 className="text-xl font-semibold text-gray-800">
-                      {block.subtitle}
-                    </h4>
+              {/* Categories & Tags */}
+              {((blog.category && blog.category.length > 0) ||
+                (blog.tags && blog.tags.length > 0)) && (
+                <div className="py-4 border-b border-b-neutral-200 flex flex-wrap gap-4">
+                  {blog.category && blog.category.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2 text-sm flex items-center gap-2">
+                        <Tag size={14} />
+                        Categories
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {blog.category.map((cat, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium"
+                          >
+                            {cat}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   )}
-                  {block.text && (
-                    <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
-                      {block.text}
-                    </p>
-                  )}
-                  {block.image && (
-                    <img
-                      src={block.image}
-                      alt={block.subtitle || "Content image"}
-                      className="w-full rounded-lg shadow-md"
-                    />
-                  )}
-                  {block.table && (
-                    <div className="overflow-x-auto">
-                      <pre className="bg-gray-100 p-4 rounded-lg text-sm">
-                        {block.table}
-                      </pre>
+
+                  {blog.tags && blog.tags.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2 text-sm">
+                        Tags
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {blog.tags.map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
+              )}
 
-        <div className="border-t border-gray-200 p-4 flex gap-3 justify-end bg-gray-50">
-          <button
-            onClick={onEdit}
-            className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
-          >
-            <Edit2 size={16} />
-            Edit
-          </button>
-          <button
-            onClick={onDelete}
-            className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
-          >
-            <Trash2 size={16} />
-            Delete
-          </button>
+              {/* Content Blocks */}
+              <div className="pt-6 sm:pt-10 flex flex-col gap-8 sm:gap-10 pb-10">
+                {blog.content &&
+                  blog.content.map((paragraph, idx) => (
+                    <div key={idx} className="flex flex-col gap-4 sm:gap-6">
+                      {paragraph.subtitle && (
+                        <h2 className="font-medium font-serif text-2xl sm:text-3xl">
+                          {paragraph.subtitle}
+                        </h2>
+                      )}
+                      {paragraph.text && (
+                        <p className="text-gray-800 text-base sm:text-lg leading-7 whitespace-pre-wrap">
+                          {paragraph.text}
+                        </p>
+                      )}
+                      {paragraph.image && (
+                        <img
+                          src={paragraph.image}
+                          alt={paragraph.subtitle || "Content image"}
+                          className="w-full h-56 sm:h-[60vh] object-cover object-center rounded"
+                        />
+                      )}
+                      {paragraph.table && (
+                        <div className="overflow-x-auto">
+                          <pre className="bg-gray-100 p-4 rounded-lg text-sm">
+                            {paragraph.table}
+                          </pre>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Actions - Sticky */}
+          <div className="sticky bottom-0 border-t border-gray-200 p-4 flex gap-3 justify-end bg-white shadow-lg">
+            <button
+              onClick={onEdit}
+              className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
+            >
+              <Edit2 size={16} />
+              Edit
+            </button>
+            <button
+              onClick={onDelete}
+              className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
+            >
+              <Trash2 size={16} />
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>

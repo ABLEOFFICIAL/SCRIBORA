@@ -310,19 +310,31 @@ export default function AddPostModal() {
             {/* Main image */}
             <div className="mb-3">
               {post.image && (
-                <div className="mb-2">
+                <div className="mb-2 relative">
                   <img
                     src={post.image}
                     alt="Preview"
                     className="w-full h-32 object-cover rounded"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setPost({ ...post, image: null })}
+                    className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors"
+                    title="Remove image"
+                  >
+                    <X size={16} />
+                  </button>
                 </div>
               )}
               <input
                 type="file"
                 accept="image/*"
                 className="w-full p-2 border rounded text-sm sm:text-base"
-                onChange={(e) => handleImageUpload(e.target.files[0])}
+                onChange={(e) => {
+                  if (e.target.files[0]) {
+                    handleImageUpload(e.target.files[0]);
+                  }
+                }}
               />
             </div>
 
@@ -377,11 +389,23 @@ export default function AddPostModal() {
                         }
                       />
                       {block.image && (
-                        <img
-                          src={block.image}
-                          alt="Block"
-                          className="w-full h-32 object-cover rounded mb-2"
-                        />
+                        <div className="relative mb-2">
+                          <img
+                            src={block.image}
+                            alt="Block"
+                            className="w-full h-32 object-cover rounded"
+                          />
+                          <button
+                            type="button"
+                            onClick={() =>
+                              updateContentBlock(index, "image", null)
+                            }
+                            className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors"
+                            title="Remove image"
+                          >
+                            <X size={16} />
+                          </button>
+                        </div>
                       )}
                       <input
                         type="file"
