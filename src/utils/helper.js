@@ -118,6 +118,33 @@ export async function postComment(commentData) {
   }
 }
 
+// update a Post
+export async function updatePost(id, postData) {
+  const url = `/api/posts/${id}`;
+  try {
+    const res = await fetch(url, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(postData),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      console.error(
+        "❌ Failed to update post:",
+        res.status,
+        text.slice(0, 200)
+      );
+      return null;
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error updating post:", error);
+    return null;
+  }
+}
+
 // delete a post by ID
 export async function deletePost(id) {
   const url = `/api/posts/${id}`;

@@ -21,6 +21,8 @@ import { loadPosts } from "@/utils/postThunks";
 import { setShowAddModal, setVisitorCount } from "@/store/contextSlice";
 import DeleteModal from "./DeleteModal";
 import { logoutAdmin } from "@/store/authSlice";
+import Link from "next/link";
+import BlogManagement from "./BlogManagement";
 
 const ScriboraDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -202,7 +204,7 @@ const ScriboraDashboard = () => {
         <h3 className="text-lg font-semibold text-white mb-3 line-clamp-2">
           {blog.title}
         </h3>
-        <div className="flex items-center justify-between text-sm text-gray-400">
+        <div className="flex items-center justify-between text-sm text-gray-400 mb-2">
           <div className="flex items-center gap-1">
             <MapPin size={14} />
             <span>{blog.country}</span>
@@ -220,9 +222,12 @@ const ScriboraDashboard = () => {
             </span>
           </div>
         </div>
-        <div className="flex items-center gap-1 text-sm text-gray-400 mt-2">
-          <Eye size={14} />
-          <span>{blog.views.toLocaleString()} views</span>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1 text-sm text-gray-400">
+            <Eye size={14} />
+            <span>{blog.views?.toLocaleString() || 0} views</span>
+          </div>
+          <BlogManagement blog={blog} />
         </div>
       </div>
     </div>
@@ -260,9 +265,11 @@ const ScriboraDashboard = () => {
         </button>
 
         <div className="mb-8">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
-            Scribora
-          </h1>
+          <Link href={"/"}>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent cursor-pointer">
+              Scribora
+            </h1>
+          </Link>
           <p className="text-gray-500 text-sm mt-1">Admin Dashboard</p>
         </div>
 
@@ -278,7 +285,7 @@ const ScriboraDashboard = () => {
         <div>
           <button
             onClick={() => setShowDeleteModal(true)}
-            className="text-red-400 font-medium flex items-center gap-2 my-5 cursor-pointer"
+            className="text-red-400 font-medium flex items-center gap-2 my-5 cursor-pointer hover:text-red-300 transition-colors"
           >
             <LogOut />
             Logout
@@ -589,7 +596,7 @@ const ScriboraDashboard = () => {
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-green-400 mb-2">
-                      {(visitorCount / allBlogs?.length).toFixed(1)}
+                      {(visitorCount / allBlogs?.length || 0).toFixed(1)}
                     </div>
                     <p className="text-gray-400">Avg. Views/Post</p>
                   </div>

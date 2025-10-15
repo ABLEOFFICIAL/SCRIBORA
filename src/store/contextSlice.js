@@ -10,6 +10,7 @@ const contextSlice = createSlice({
     // AllPost: posts,
     AllPost: [],
     filteredPosts: [],
+    editPost: null,
     singlePost: null,
     search: "",
     emailSuccess: false,
@@ -98,6 +99,32 @@ const contextSlice = createSlice({
     setEmailSuccess(state, action) {
       state.emailSuccess = action.payload;
     },
+    // setEditPost: (state, action) => {
+    //   state.editPost = action.payload;
+    // },
+    // deletePost: (state, action) => {
+    //   state.AllPost = state.AllPost.filter(
+    //     (post) => post._id !== action.payload
+    //   );
+    // },
+    setEditPost: (state, action) => {
+      state.editPost = action.payload;
+    },
+
+    removePost: (state, action) => {
+      state.AllPost = state.AllPost.filter(
+        (post) => post._id !== action.payload
+      );
+    },
+
+    updatePostInStore: (state, action) => {
+      const index = state.AllPost.findIndex(
+        (post) => post._id === action.payload._id
+      );
+      if (index !== -1) {
+        state.AllPost[index] = action.payload;
+      }
+    },
     filterByCountry(state, action) {
       const country = action.payload;
       state.selectedCountry = country;
@@ -153,5 +180,8 @@ export const {
   filterByCountry,
   setSelectedCountry,
   setEmailSuccess,
+  setEditPost,
+  removePost,
+  updatePostInStore,
 } = contextSlice.actions;
 export default contextSlice.reducer;

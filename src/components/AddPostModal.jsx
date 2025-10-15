@@ -1,15 +1,21 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
-import StatsCard from "./StatsCard";
 import { X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { AddPost, setShowAddModal } from "@/store/contextSlice";
-import { createPost } from "@/utils/helper";
+import {
+  AddPost,
+  setShowAddModal,
+  setEditPost,
+  updatePostInStore,
+} from "@/store/contextSlice";
+import { createPost, updatePost } from "@/utils/helper";
 
 export default function AddPostModal() {
   const dispatch = useDispatch();
   const addPostModal = useSelector((state) => state.context.showAddModal);
+  const editPost = useSelector((state) => state.context.editPost);
+
   const categories = [
     "Local",
     "World",
@@ -55,6 +61,33 @@ export default function AddPostModal() {
     content: [],
   });
 
+  // Load edit post data when modal opens
+  useEffect(() => {
+    if (addPostModal && editPost) {
+      setPost(editPost);
+    } else if (!addPostModal) {
+      // Reset form when modal closes
+      resetForm();
+    }
+  }, [addPostModal, editPost]);
+
+  const resetForm = () => {
+    setPost({
+      title: "",
+      slug: "",
+      author: "",
+      category: [],
+      trending: false,
+      country: "",
+      tags: [],
+      excerpt: "",
+      image: null,
+      readingTime: "",
+      content: [],
+    });
+    dispatch(setEditPost(null));
+  };
+
   const addContentBlock = (type) => {
     let newBlock = { type, subtitle: "", text: "" };
     if (type === "image") newBlock.image = null;
@@ -68,7 +101,6 @@ export default function AddPostModal() {
     setPost({ ...post, content: updated });
   };
 
-  // Toggle multi-select (categories/tags)
   const toggleSelection = (field, value) => {
     setPost((prev) => {
       const exists = prev[field].includes(value);
@@ -85,32 +117,44 @@ export default function AddPostModal() {
     e.preventDefault();
 
     try {
-      const postWithViews = { ...post, views: 0 }; // Ensure views: 0
-      console.log("Post data to save:", postWithViews);
-      const newPost = await createPost(postWithViews);
-      if (!newPost) {
-        throw new Error("Failed to create post");
+      const isEditing = !!editPost;
+
+      if (isEditing) {
+        // UPDATE existing post
+        console.log("Updating post:", post);
+        const result = await updatePost(post._id, post);
+
+        if (!result) {
+          throw new Error("Failed to update post");
+        }
+
+        console.log("Post updated successfully");
+        dispatch(updatePostInStore(post));
+        alert("Post updated successfully!");
+      } else {
+        // CREATE new post
+        const postWithViews = { ...post, views: 0 };
+        console.log("Creating new post:", postWithViews);
+        const newPost = await createPost(postWithViews);
+
+        if (!newPost) {
+          throw new Error("Failed to create post");
+        }
+
+        console.log("Post created successfully:", newPost);
+        dispatch(AddPost({ ...postWithViews, _id: newPost.insertedId }));
+        alert("Post created successfully!");
       }
-      console.log("Post created successfully:", newPost);
-      dispatch(AddPost({ ...postWithViews, _id: newPost.insertedId }));
+
       dispatch(setShowAddModal(false));
-      setPost({
-        title: "",
-        slug: "",
-        author: "",
-        category: [],
-        trending: false,
-        country: "",
-        tags: [],
-        excerpt: "",
-        image: null,
-        readingTime: "",
-        content: [],
-        views: 0, // Reset with views
-      });
+      resetForm();
     } catch (err) {
-      console.error("Failed to create post:", err);
-      alert("Failed to create post. Check the console for details.");
+      console.error("Failed to save post:", err);
+      alert(
+        `Failed to ${
+          editPost ? "update" : "create"
+        } post. Check the console for details.`
+      );
     }
   };
 
@@ -131,14 +175,9 @@ export default function AddPostModal() {
       console.log("Upload response:", data);
       if (data.url) {
         if (index !== null) {
-          updateContentBlock(index, field, data.url); // Update content block image
-          console.log("Updated content block:", post.content[index]); // Debug log
+          updateContentBlock(index, field, data.url);
         } else {
-          setPost((prev) => {
-            const newState = { ...prev, image: data.url };
-            console.log("Updated post state:", newState); // Debug log
-            return newState;
-          });
+          setPost((prev) => ({ ...prev, image: data.url }));
         }
       } else {
         console.error(
@@ -152,20 +191,25 @@ export default function AddPostModal() {
     }
   };
 
+  const handleClose = () => {
+    dispatch(setShowAddModal(false));
+    resetForm();
+  };
+
   return (
     addPostModal && (
       <div className="">
         <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center px-2 sm:px-4">
           <X
-            onClick={() => dispatch(setShowAddModal(false))}
-            className="bg-white size-7 rounded-full p-1 absolute top-4 right-4 sm:top-8 sm:right-10 m-2 cursor-pointer"
+            onClick={handleClose}
+            className="bg-white size-7 rounded-full p-1 absolute top-4 right-4 sm:top-8 sm:right-10 m-2 cursor-pointer hover:bg-gray-200 transition-colors"
           />
           <div
             style={{ scrollbarWidth: "none" }}
             className="bg-white p-5 sm:p-6 rounded-lg w-full sm:w-4/5 md:w-3/5 lg:w-2/5 max-h-[85vh] overflow-y-auto"
           >
             <h2 className="text-lg sm:text-xl font-semibold mb-4 text-center sm:text-left">
-              Create Post
+              {editPost ? "Edit Post" : "Create Post"}
             </h2>
 
             {/* Title */}
@@ -195,7 +239,7 @@ export default function AddPostModal() {
               onChange={(e) => setPost({ ...post, author: e.target.value })}
             />
 
-            {/* Category (multi-select checkboxes) */}
+            {/* Category */}
             <div className="mb-3">
               <p className="font-medium mb-1 text-sm sm:text-base">Category</p>
               <div className="flex flex-wrap gap-2">
@@ -212,7 +256,7 @@ export default function AddPostModal() {
               </div>
             </div>
 
-            {/* Tags (multi-select checkboxes) */}
+            {/* Tags */}
             <div className="mb-3">
               <p className="font-medium mb-1 text-sm sm:text-base">Tags</p>
               <div className="flex flex-wrap gap-2">
@@ -229,7 +273,7 @@ export default function AddPostModal() {
               </div>
             </div>
 
-            {/* Country dropdown */}
+            {/* Country */}
             <select
               className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
               value={post.country}
@@ -243,7 +287,7 @@ export default function AddPostModal() {
               ))}
             </select>
 
-            {/* Trending select */}
+            {/* Trending */}
             <select
               className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
               value={post.trending}
@@ -264,12 +308,23 @@ export default function AddPostModal() {
             />
 
             {/* Main image */}
-            <input
-              type="file"
-              accept="image/*"
-              className="w-full p-2 border rounded mb-3 text-sm sm:text-base"
-              onChange={(e) => handleImageUpload(e.target.files[0])}
-            />
+            <div className="mb-3">
+              {post.image && (
+                <div className="mb-2">
+                  <img
+                    src={post.image}
+                    alt="Preview"
+                    className="w-full h-32 object-cover rounded"
+                  />
+                </div>
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                className="w-full p-2 border rounded text-sm sm:text-base"
+                onChange={(e) => handleImageUpload(e.target.files[0])}
+              />
+            </div>
 
             {/* Reading Time */}
             <input
@@ -321,6 +376,13 @@ export default function AddPostModal() {
                           updateContentBlock(index, "text", e.target.value)
                         }
                       />
+                      {block.image && (
+                        <img
+                          src={block.image}
+                          alt="Block"
+                          className="w-full h-32 object-cover rounded mb-2"
+                        />
+                      )}
                       <input
                         type="file"
                         accept="image/*"
@@ -332,8 +394,6 @@ export default function AddPostModal() {
                               "image",
                               index
                             );
-                          } else {
-                            console.error("No file selected");
                           }
                         }}
                       />
@@ -358,33 +418,26 @@ export default function AddPostModal() {
               <button
                 type="button"
                 onClick={() => addContentBlock("text")}
-                className="px-3 py-1 bg-blue-500 text-white rounded font-semibold text-xs sm:text-sm"
+                className="px-3 py-1 bg-blue-500 text-white rounded font-semibold text-xs sm:text-sm hover:bg-blue-600 transition-colors"
               >
                 Add Text Block
               </button>
               <button
                 type="button"
                 onClick={() => addContentBlock("image")}
-                className="px-3 py-1 bg-amber-500 text-white rounded font-semibold text-xs sm:text-sm"
+                className="px-3 py-1 bg-amber-500 text-white rounded font-semibold text-xs sm:text-sm hover:bg-amber-600 transition-colors"
               >
                 Add Image Block
               </button>
-              {/* <button
-                type="button"
-                onClick={() => addContentBlock("table")}
-                className="px-3 py-1 bg-neutral-500 text-white rounded font-semibold text-xs sm:text-sm"
-              >
-                Add Table Block
-              </button> */}
             </div>
 
             {/* Save Button */}
             <button
               type="submit"
               onClick={handleSave}
-              className="mt-6 w-full bg-black text-white py-2 rounded text-sm sm:text-base"
+              className="mt-6 w-full bg-black text-white py-2 rounded text-sm sm:text-base hover:bg-gray-800 transition-colors"
             >
-              Save Post
+              {editPost ? "Update Post" : "Save Post"}
             </button>
           </div>
         </div>
