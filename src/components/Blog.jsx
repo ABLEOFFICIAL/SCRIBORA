@@ -42,7 +42,7 @@ export default function Blog({ post }) {
           ))}
         </span>
         <Link href={`/${post._id}`}>
-          <h2 className="text-lg lg:text-3xl font-medium font-serif w-full">
+          <h2 className="text-base lg:text-3xl font-medium font-serif w-full">
             {post.title}
           </h2>
         </Link>

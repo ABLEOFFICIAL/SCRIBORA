@@ -151,13 +151,13 @@ const BlogsDetails = ({ params }) => {
     setData({ name: "", email: "", comment: "" });
   };
 
-  if (detailsLoading) {
-    return (
-      <div className="pr-10 flex flex-col border-r border-r-neutral-300 w-3/5 justify-center items-center h-[60vh]">
-        <Loading />
-      </div>
-    );
-  }
+  // if (detailsLoading) {
+  //   return (
+  //     <div className="flex w-full justify-center items-center h-[60vh]">
+  //       <Loading />
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
@@ -482,31 +482,8 @@ const BlogsDetails = ({ params }) => {
                               className="w-full h-56 sm:h-[60vh] object-cover object-center rounded"
                             />
                           )}
-                          <p className="text-gray-800 text-base sm:text-lg leading-7">
-                            What if your favorite Nigerian celebrities weren’t
-                            just stars on stage or screen, but machines on
-                            wheels? In this whimsical exploration, we match some
-                            of Nigeria’s most beloved celebrities with cars that
-                            embody their unique personalities and styles. From
-                            sleek sports cars to rugged SUVs, here’s a fun look
-                            at which vehicles best represent these iconic
-                            figures.
-                          </p>
                         </div>
                       ))}
-
-                      {/* comment box */}
-                      {/* <div className="my-10 sm:my-20 flex flex-col gap-3">
-                  <h3 className="text-2xl sm:text-4xl font-medium font-serif">
-                    Leave a comment
-                  </h3>
-                  <div className="flex flex-col sm:flex-row items-end gap-3 sm:gap-5">
-                    <textarea className="w-full sm:w-2/5 bg-neutral-50 border border-neutral-600 rounded-xl h-32 sm:h-40 focus:outline-none p-4 sm:p-5 text-sm sm:text-base" />
-                    <button className="bg-amber-500 cursor-pointer text-white px-5 py-2 rounded w-full sm:w-max font-semibold">
-                      Post Comment
-                    </button>
-                  </div>
-                </div> */}
                     </div>
                     <span className="relative h-10 w-full flex justify-center items-center my-6 sm:my-10 px-2 sm:px-0">
                       <span className="w-full border-t border-t-neutral-300 block"></span>

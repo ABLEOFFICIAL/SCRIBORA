@@ -40,13 +40,13 @@ export default function BlogListing() {
   );
 
   // ✅ If there are no posts, show fallback component
-  if (postsToShow.length === 0) {
-    return (
-      <div className="pr-10 flex flex-col border-r border-r-neutral-300 w-3/5 justify-center items-center">
-        <PostNotFound />
-      </div>
-    );
-  }
+  // if (postsToShow.length === 0) {
+  //   return (
+  //     <div className="pr-10 flex flex-col border-r border-r-neutral-300 w-3/5 justify-center items-center">
+  //       <PostNotFound />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div
