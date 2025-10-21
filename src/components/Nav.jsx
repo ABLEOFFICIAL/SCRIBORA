@@ -32,7 +32,7 @@ export default function Nav() {
     { name: "News", lists: ["Local", "World", "International", "Politics"] },
     {
       name: "Lifestyle",
-      lists: ["Fashion", "Beauty & Health", "Relationships", "Food & Travel"],
+      lists: ["Fashion", "Beauty", "Health", "Relationships", "Food & Travel"],
     },
     { name: "Entertainment", lists: ["Movies", "Music", "Celebrities"] },
     { name: "Business" },
