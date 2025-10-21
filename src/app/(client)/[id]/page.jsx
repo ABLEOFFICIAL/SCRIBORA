@@ -220,7 +220,7 @@ const BlogsDetails = ({ params }) => {
                 <img
                   src={clickedPost.image}
                   alt=""
-                  className="w-full h-56 sm:h-[60vh] object-cover object-center rounded"
+                  className="w-full lg:w-2/3 mx-auto h-56 sm:h-[60vh] object-cover object-center rounded"
                 />
               </div>
 
@@ -249,7 +249,7 @@ const BlogsDetails = ({ params }) => {
                       <img
                         src={paragraph.image}
                         alt=""
-                        className="w-full h-56 sm:h-[60vh] object-cover object-center rounded"
+                        className="w-full lg:w-2/3 mx-auto h-56 sm:h-[60vh] object-cover object-center rounded"
                       />
                     )}
                   </div>
